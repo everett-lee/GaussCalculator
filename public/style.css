@@ -1,0 +1,72 @@
+.mainContainer {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.topContainer {
+  border: 1px solid green; 
+  width: 45%;
+  height: 4em;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.topInput {
+  width: 10%;
+}
+
+.topDiv {
+  width: 10%;
+  border: 1px solid green; 
+}
+
+.topButton {  
+  width: 35%;
+}
+
+.topInput {
+  flex-shrink: 1;
+}
+.matrixContainer {
+  height: 450px;
+  width: 1600px;
+  border: 3px solid green; 
+  display: flex;
+}
+
+.swapButtons {
+  order: -1;
+  width: 5%;
+  border: 3px solid red; 
+}
+
+.matrix {
+  display: grid;
+  width: 95%;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 0.5em;
+  grid-row-gap: 0.5em;
+}
+.cell {
+  background-color: #999;
+}
+
+.numInput {
+  height: 70%;
+  width: 92.5%;
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+input {
+  text-align: center;
+}

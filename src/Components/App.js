@@ -32,28 +32,28 @@ function App() {
   }
 
   const doSwap = (i) => {
-      let pair = swapPair;
-      pair.push(i);
-      setSwapPair(pair);
+    let pair = swapPair;
+    pair.push(i);
+    setSwapPair(pair);
 
-      // if two rows have been selected to swap
-      if (swapPair.length === 2) {
-        // indexes of rows being swapped
-        let first = swapPair[0];
-        let second = swapPair[1];
+    // if two rows have been selected to swap
+    if (swapPair.length === 2) {
+      // indexes of rows being swapped
+      let first = swapPair[0];
+      let second = swapPair[1];
 
-        let array = arrayToMatrix();
-                
-        console.log(array);
-        // the row being overwritten
-        let temp = arrayToMatrix[first];
-        array[first] = second;
-        array[second] = temp;
-        
-        console.log(array);
+      let arr = arrayToMatrix();
 
-        setSwapPair([])
-      }
+      // the row being overwritten
+      let temp = arr[first];
+      arr[first] = arr[second];
+      arr[second] = temp;
+      
+      let flattened = arr.flatMap(el => el);
+      setMatrix(flattened);
+
+      setSwapPair([])
+    }
   }
 
   const swapButtons = () => {
@@ -62,7 +62,7 @@ function App() {
     const arr = new Array(dimensions.n).fill(0);
     return arr.map(el => {
       return <SwapButton i={count++} key={count} name={`⟺ Row ${count}`}
-                         f={doSwap} />
+        f={doSwap} />
     })
   }
 
@@ -70,14 +70,15 @@ function App() {
   // converts the matrix which is currently in array for to
   // an array of arrays
   const arrayToMatrix = () => {
-      const out = [];
-      const cols = startDimensions.m;
-      // iterate in chunks of the column size
-      for (let i = 0; i < matrix.length; i = i + cols) {
-          out.push(matrix.slice(i, i+cols));
-      }
-      console.log( out)
-      return out;
+    const out = [];
+    const cols = dimensions.m;
+    // iterate in chunks of the column size
+    for (let i = 0; i < matrix.length; i = i + cols) {
+      out.push(matrix.slice(i, i + cols));
+      console.log(matrix.slice(i, i + cols));
+    }
+    
+    return out;
   }
 
   return (

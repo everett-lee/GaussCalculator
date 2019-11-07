@@ -43,6 +43,12 @@
   order: -1;
   width: 5%;
   border: 3px solid red; 
+  display: flex;
+  flex-direction: column;
+}
+
+.swapButton {
+  flex-grow:1;
 }
 
 .matrix {

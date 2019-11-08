@@ -22,7 +22,8 @@ function TextInput(props) {
         <input className={props.className} 
         value={ props.val }
         style={ style }
-        onChange={ (e) => updateVal(e.target.value) } />
+        onChange={ (e) => updateVal(e.target.value) } 
+        placeholder={props.placeholder}/>
     );
 }
 

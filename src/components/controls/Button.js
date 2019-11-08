@@ -2,7 +2,7 @@ import React from 'react';
 
 function TopButton(props) {
     return ( 
-    <button className="topButton" onClick={(e) => props.f()} >
+    <button className={props.className} onClick={(e) => props.f()} >
         {props.name}
     </button> );
 }

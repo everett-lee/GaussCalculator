@@ -8,7 +8,6 @@
 }
 
 .topContainer {
-  border: 1px solid green; 
   width: 45%;
   height: 4em;
   margin: auto;
@@ -18,52 +17,71 @@
 
 .topInput {
   width: 10%;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2em;
 }
 
 .topDiv {
   width: 10%;
-  border: 1px solid green; 
+  background-color: rgb(210, 209, 219);
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 2em;
 }
 
 .topButton {  
   width: 35%;
+  background-color: rgb(210, 209, 219);
+  box-shadow: 0px 0px 1px 1px #888888;
+  font-size: 1.5em;
+  font-family: monospace;
+  color: #656565;
+  font-weight: bold;
 }
 
 .topInput {
   flex-shrink: 1;
 }
 .matrixContainer {
-  height: 450px;
+  height: 500px;
   width: 1600px;
-  border: 3px solid green; 
   display: flex;
 }
 
 .swapButtons {
   order: -1;
   width: 5%;
-  border: 3px solid red; 
   display: flex;
   flex-direction: column;
 }
 
 .swapButton {
   flex-grow:1;
+  background-color: rgb(210, 209, 219);
+  box-shadow: 0px 0px 1px 1px #888888;
+  font-size: 1em;
+  font-family: monospace;
+  color: #656565;
+  font-weight: bold;
 }
 
 .matrix {
   display: grid;
-  width: 95%;
-  grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 0.5em;
-  grid-row-gap: 0.5em;
+  width: 100%;
+  grid-gap: 0.1em;
 }
+
 .cell {
-  background-color: #999;
+  background-color: rgb(210, 209, 219);
+  box-shadow: 0px 0px 1px 2px #888888;
 }
 
 .numInput {
-  height: 70%;
+  font-size: 2.5vh;
+  height: 80%;
   width: 92.5%;
   margin: 0;
   position: relative;
@@ -75,4 +93,72 @@
 
 input {
   text-align: center;
+}
+
+.bottomContainer {
+  border: 1px solid green; 
+  width: 65%;
+  height: 5em;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.bottomButton {  
+  width: 15%;
+}
+
+.functionContainer {
+  border: 1px solid green; 
+  width: 70%;
+  height: 5em;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+
+.fContainer {
+  width: 100%;
+  height: 3em;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.fButton {  
+  height: 100%;
+  width: 25%;
+}
+
+.fInput {
+  width: 5%;
+}
+
+.fDiv, .fDivLong {
+  width: 10%;
+  height: 100%;
+  background-color: rgb(210, 209, 219);
+  font-size: 1em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5em;
+}
+
+.fDivLong {
+  width: 20%;
+}
+
+.opButtonContainer {
+  width: 5%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.opButton {  
+  height: 100%;
+  width: 100%;
 }

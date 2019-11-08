@@ -27,7 +27,8 @@ function TextInput(props) {
         value={ props.val }
         style={ style }
         onChange={ (e) => updateVal(e.target.value) } 
-        placeholder={props.placeholder}/>
+        placeholder={props.placeholder}
+        data-testid={props.testId} />
     );
 }
 

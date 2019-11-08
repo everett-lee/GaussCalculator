@@ -77,15 +77,19 @@ function Fcontainer(props) {
     return (
         <div className='fContainer'>
             <TextInput className='fInput' f={setR1Scale} val={R1Scale}
-                inputTest={inputDecimalTest} number={false} />
+                inputTest={inputDecimalTest} number={false}
+                testId={'scalarValue'} />
             <div className='fDiv'> &times; R </div>
             <TextInput className='fInput' f={setR1} val={R1}
-                inputTest={inputRowTest} number={true} />
+                inputTest={inputRowTest} number={true}
+                testId={'R1Value'} />
             <div className='fDiv'> &#43; R </div>
             <TextInput className='fInput' f={setR2} val={R2}
-                inputTest={inputRowTest} number={true} />
+                inputTest={inputRowTest} number={true} 
+                testId={'R2Value'}/>
             <Button className='fButton'
-                name={`${R1Scale} 🞄 R${R1} + R${R2} → R${R2}`} f={performRowAddition} />
+                name={`${R1Scale} 🞄 R${R1} + R${R2} → R${R2}`} f={performRowAddition} 
+                testId={"rowAdditionButton"}/>
         </div>
     )
 }

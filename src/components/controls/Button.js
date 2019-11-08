@@ -1,6 +1,6 @@
 import React from 'react';
 
-function TopButton(props) {
+function Button(props) {
     return ( 
     <button className={props.className} onClick={(e) => props.f()} 
             data-testid={props.testId} >
@@ -8,4 +8,4 @@ function TopButton(props) {
     </button> );
 }
 
-export default TopButton;
+export default Button;

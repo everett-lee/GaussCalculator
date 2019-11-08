@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import sleep from './utils/Sleep';
 
 function Cell(props) {
     // // the final column (the constants) should have a different colour
@@ -10,12 +11,8 @@ function Cell(props) {
 
     const [style, setStyle] = useState({ backgroundColor: 'white' });
 
-    const sleep = (time) => {
-        return new Promise((resolve) => setTimeout(resolve, time));
-    }
-
     //update the matrix state
-    const updateState = (val) =>  {
+    const updateState = (val) => {
         let matrixCopy = props.matrix.slice(0);
         matrixCopy[props.index] = val;
         props.setMatrix(matrixCopy)
@@ -37,12 +34,13 @@ function Cell(props) {
 
     return (
         <div className='cell'>
-            <input className='numInput' 
-            value={props.matrix[props.index]} 
-            style={style}
-            onChange={(e) => updateVal(e.target.value)} 
-            data-testid={props.index} />
-    </div>);
+            <input type='text' className='numInput'
+                value={props.matrix[props.index]}
+                style={style}
+                onChange={(e) => updateVal(e.target.value)}
+                data-testid={props.index} />
+        </div>
+    );
 }
 
 export default Cell;

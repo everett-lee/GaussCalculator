@@ -4,6 +4,7 @@ import SwapButton from './controls/SwapButton';
 import TopContainer from './TopContainer';
 import BottomContainer from './BottomContainer';
 import { HistoryContext } from './providers/HistoryProvider';
+import sleep from './utils/Sleep';
 
 function App() {
   const zeroMatrix = new Array(25).fill(0);
@@ -35,7 +36,8 @@ function App() {
     setN('');
     setM('');
     setDimensions(startDimensions);
-    setMatrix(zeroMatrix);
+    setMatrix(zeroMatrix)
+    setSwapPair([]);
     historyContext.resetHistory({matrix: zeroMatrix, dimensions: startDimensions});
   }
 
@@ -103,8 +105,17 @@ function App() {
     const arr = new Array(dimensions.n).fill(0);
 
     return arr.map(el => {
-      return <SwapButton i={count++} key={count} name={`⟺ Row ${count}`}
-        f={doSwap} />
+      let i = count;
+      count++;
+
+      let clicked = false;
+      // if this button has been clicked
+      if (i === swapPair[0] || i === swapPair[1]) {
+        clicked = true;
+      }
+
+      return <SwapButton i={i} key={count} name={`⟺ Row ${count}`}
+        f={doSwap} clicked={clicked} />
     })
   }
 

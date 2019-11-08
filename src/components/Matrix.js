@@ -2,7 +2,7 @@ import React from 'react';
 import Cell from './Cell';
 
 function Matrix(props) {
-    const gridStyle = { gridTemplateColumns: `repeat(${props.cols}, minmax(0, 1fr))` };
+    const gridStyle = { gridTemplateColumns: `repeat(${props.cols}, minmax(auto, 1fr))` };
 
     // render each cell of the matrix using dimensions 
     // passed in props

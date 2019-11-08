@@ -8,7 +8,8 @@
 }
 
 .topContainer {
-  width: 45%;
+  border: #0011a8 1px solid;
+  width: 35%;
   height: 4em;
   margin: auto;
   display: flex;
@@ -25,7 +26,9 @@
 
 .topDiv {
   width: 10%;
-  background-color: rgb(210, 209, 219);
+  border: #0011a8 1px solid;
+  color: black;
+  background-color: #3CBC8D;  
   font-size: 2em;
   text-align: center;
   vertical-align: middle;
@@ -34,18 +37,18 @@
 
 .topButton {  
   width: 35%;
-  background-color: rgb(210, 209, 219);
   box-shadow: 0px 0px 1px 1px #888888;
-  font-size: 1.5em;
-  font-family: monospace;
-  color: #656565;
+  font-size: 1.25em;
   font-weight: bold;
 }
 
 .topInput {
   flex-shrink: 1;
 }
+
 .matrixContainer {
+  border-bottom: #0011a8 7px solid;
+  border-top: #0011a8 1px solid;
   height: 500px;
   width: 1600px;
   display: flex;
@@ -60,58 +63,55 @@
 
 .swapButton {
   flex-grow:1;
-  background-color: rgb(210, 209, 219);
-  box-shadow: 0px 0px 1px 1px #888888;
   font-size: 1em;
-  font-family: monospace;
-  color: #656565;
   font-weight: bold;
 }
 
 .matrix {
   display: grid;
   width: 100%;
-  grid-gap: 0.1em;
+  grid-gap: 0.25em;
 }
 
 .cell {
-  background-color: rgb(210, 209, 219);
-  box-shadow: 0px 0px 1px 2px #888888;
+  box-shadow: 0px 0px 1px 2px #0011a8;
 }
 
 .numInput {
-  font-size: 2.5vh;
-  height: 80%;
-  width: 92.5%;
-  margin: 0;
+  height:99.5%;
+  width: 99.5%;
+  padding: 0;
   position: relative;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-}
-
-input {
-  text-align: center;
+  left: 0;
+  outline: none;
+  border: 1px solid #cdcdcd;
+  border-color: rgba(0, 0, 0, .15);
+  background-color: white;
+  font-size: 1em;
 }
 
 .bottomContainer {
-  border: 1px solid green; 
+  border: #0011a8 1px solid;
   width: 65%;
-  height: 5em;
+  height: 6em;
   margin: auto;
   display: flex;
   flex-direction: row;
 }
 
-.bottomButton {  
+.echeleonButton {  
   width: 15%;
 }
 
-.functionContainer {
-  border: 1px solid green; 
+.undoButton {  
+  width: 15%;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.functionContainer {  
   width: 70%;
-  height: 5em;
+  height: 100%;
   margin: auto;
   display: flex;
   justify-content: center;
@@ -120,6 +120,7 @@ input {
 }
 
 .fContainer {
+  border: #0011a8 1px solid;
   width: 100%;
   height: 3em;
   margin: auto;
@@ -131,6 +132,7 @@ input {
 .fButton {  
   height: 100%;
   min-width: 30%;
+  max-width: 30%;
   flex-grow:1;
 }
 
@@ -139,13 +141,14 @@ input {
 }
 
 .fDiv, .fDivLong {
+  background-color: #3CBC8D;
+  border: #0011a8 1px solid;
   width: 5%;
   height: 100%;
-  background-color: rgb(210, 209, 219);
-  font-size: 1em;
+  font-size: 1.25em;
   text-align: center;
   vertical-align: middle;
-  line-height: 1.5em;
+  line-height: 2.5em;
   flex-grow:1;
 }
 
@@ -166,3 +169,19 @@ input {
   height: 100%;
   width: 100%;
 }
+
+button {
+  border: #0011a8 1px solid;
+  box-shadow: 0px 0px 1px 1px #888888;
+  font-size: 1em;
+}
+
+input {
+  text-align: center;
+}
+
+* {
+  font-family: Courier;
+  font-weight: bold;
+  color: #0a0a0a;
+ }

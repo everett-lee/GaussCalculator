@@ -65,7 +65,7 @@ function FcontainerBottom(props) {
                 inputTest={inputDecimalTest} number={false}
                 testId={'scalarValueBottom'} />
             <div className="opButtonContainer">
-                <Button className='fButton'
+                <Button className='opButton'
                     name={operation}
                     testId={"setOperationButton"}
                     f={switchOperation} />

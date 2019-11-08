@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
+import sleep from '../utils/Sleep';
 
 function TextInput(props) {
     const [style, setStyle] = useState({ backgroundColor: 'white' });
-    
-    const sleep = (time) => {
-        return new Promise((resolve) => setTimeout(resolve, time));
-    }  
 
     const updateVal = (val) => {
         // show a red indicator if value is not valid

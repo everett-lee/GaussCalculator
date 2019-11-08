@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Matrix from './Matrix';
 import SwapButton from './controls/SwapButton';
-import FunctionContainer from './functioncontainer/FunctionContainer';
 import TopContainer from './TopContainer';
+import BottomContainer from './BottomContainer';
 
 function App() {
   const zeroMatrix = new Array(25).fill(0);
@@ -88,14 +88,13 @@ function App() {
         <div className='swapButtons'>
           {renderSwapButtons()}
         </div>
-        <Matrix cols={dimensions.m} matrix={matrix} setMatrix={setMatrix} />
+        <Matrix cols={dimensions.m} 
+        matrix={matrix} 
+        setMatrix={setMatrix} />
       </div>
-      <div className='bottomContainer'>
-        <FunctionContainer rows={dimensions.n} getMatrix={arrayToMatrix}
-                            setMatrix={setMatrix} />
-        <button className='bottomButton' />
-        <button className='bottomButton' />
-      </div>
+      <BottomContainer rows={dimensions.n} 
+        getMatrix={arrayToMatrix}
+        setMatrix={setMatrix}/>
     </div>
   );
 }

@@ -46,7 +46,6 @@ test('The addition of two rows results in the correct output', () => {
 
     fireEvent.click(queryByTestId(/rowAdditionButton/i));
 
-
     // result: 2x + 5.5y + 1z -12w = 2.5  
     let element = queryByTestId('5');
     expect(element.value).toBe('2')

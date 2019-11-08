@@ -50,7 +50,7 @@ function FcontainerBottom(props) {
                 return el /= parsedScalar;
             }
         });
-        
+
         matrix[R1index] = scaledR1;
 
         // flatten result and update parent class 
@@ -72,10 +72,10 @@ function FcontainerBottom(props) {
             <div className="fDivLong"> R </div>
             <TextInput className='fInput' f={setR1} val={R1}
                 inputTest={props.rowRangeTest} number={true}
-                testId={'R1ValueButtom'} />
+                testId={'R1ValueBottom'} />
             <Button className='fButton'
                 name={`R${R1} ${operation} ${R1Scale} → R${R1}`}
-                testId={"scaleRowButton"} 
+                testId={"rowScaleButton"} 
                 f={performRowScale} />
         </div>
     );

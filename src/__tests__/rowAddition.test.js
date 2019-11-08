@@ -2,6 +2,11 @@ import React from 'react';
 import App from '../components/App.js';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 
+/**
+ * Test the row addition operation functions correctly
+ */
+
+
 afterEach(cleanup)
 
 test('The addition of two rows results in the correct output', () => {
@@ -57,7 +62,7 @@ test('The addition of two rows results in the correct output', () => {
 })
 
 test('The subtraction of a row results in the correct output', () => {
-    const { debug, queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<App />);
 
     let input = queryByTestId('R1Value');
     // second row selector
@@ -105,4 +110,96 @@ test('The subtraction of a row results in the correct output', () => {
     expect(element.value).toBe('4')
     element = queryByTestId('24');
     expect(element.value).toBe('-12.5')
+})
+
+test('The add of a row with non numeric values works as expected', () => {
+    const { queryByTestId } = render(<App />);
+
+    let input = queryByTestId('R1Value');
+    // second row selector
+    fireEvent.change(input, { target: { value: 3 } })
+    input = queryByTestId('R2Value');
+    fireEvent.change(input, { target: { value: 5 } })
+
+    let scalarInput = queryByTestId('scalarValue');
+    fireEvent.change(scalarInput, { target: { value: 2 } })
+
+    // R3: -x + .y + 1z + 2w = 5
+    input = queryByTestId('10');
+    fireEvent.change(input, { target: { value: '-' } })
+    input = queryByTestId('11');
+    fireEvent.change(input, { target: { value: '.' } })
+    input = queryByTestId('12');
+    fireEvent.change(input, { target: { value: '1' } })
+    input = queryByTestId('13');
+    fireEvent.change(input, { target: { value: '2' } })
+    input = queryByTestId('14');
+    fireEvent.change(input, { target: { value: '5' } })
+
+    // R5: 1x + 1y + tz + rw = 1
+    input = queryByTestId('20');
+    fireEvent.change(input, { target: { value: '1' } })
+    input = queryByTestId('21');
+    fireEvent.change(input, { target: { value: '1' } })
+    input = queryByTestId('22');
+    fireEvent.change(input, { target: { value: 't' } })
+    input = queryByTestId('23');
+    fireEvent.change(input, { target: { value: 'r' } })
+    input = queryByTestId('24');
+    fireEvent.change(input, { target: { value: '1' } })
+
+    fireEvent.click(queryByTestId(/rowAdditionButton/i));
+
+    // non numeric values treated as zero so
+    // result: 1x + 1y + 2z + 4w = 11 
+    let element = queryByTestId('20');
+    expect(element.value).toBe('1')
+    element = queryByTestId('21');
+    expect(element.value).toBe('1')
+    element = queryByTestId('22');
+    expect(element.value).toBe('2')
+    element = queryByTestId('23');
+    expect(element.value).toBe('4')
+    element = queryByTestId('24');
+    expect(element.value).toBe('11')
+})
+
+test('The addition of row to itself has no effect', () => {
+    const { queryByTestId } = render(<App />);
+
+    let input = queryByTestId('R1Value');
+    // second row selector
+    fireEvent.change(input, { target: { value: '1' } })
+    input = queryByTestId('R2Value');
+    fireEvent.change(input, { target: { value: '1' } })
+
+    let scalarInput = queryByTestId('scalarValue');
+    fireEvent.change(scalarInput, { target: { value: 2 } })
+
+    // top row: 1x + 2y + 0z + -4w = 5
+    input = queryByTestId('0');
+    fireEvent.change(input, { target: { value: '1' } })
+    input = queryByTestId('1');
+    fireEvent.change(input, { target: { value: '2' } })
+    input = queryByTestId('2');
+    fireEvent.change(input, { target: { value: '0' } })
+    input = queryByTestId('3');
+    fireEvent.change(input, { target: { value: '-4' } })
+    input = queryByTestId('4');
+    fireEvent.change(input, { target: { value: '5' } })
+
+    fireEvent.click(queryByTestId(/rowAdditionButton/i));
+
+
+    // result: 2x + 5.5y + 1z -12w = 2.5  
+    let element = queryByTestId('0');
+    expect(element.value).toBe('2')
+    element = queryByTestId('6');
+    expect(element.value).toBe('1')
+    element = queryByTestId('7');
+    expect(element.value).toBe('2')
+    element = queryByTestId('8');
+    expect(element.value).toBe('3')
+    element = queryByTestId('9');
+    expect(element.value).toBe('4')
 })

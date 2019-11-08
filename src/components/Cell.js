@@ -35,9 +35,13 @@ function Cell(props) {
         }
     }
 
-    return (<div className='cell'>
-        <input className='numInput' value={props.matrix[props.index]} style={style}
-            onChange={(e) => updateVal(e.target.value)} data-testid={props.index} />
+    return (
+        <div className='cell'>
+            <input className='numInput' 
+            value={props.matrix[props.index]} 
+            style={style}
+            onChange={(e) => updateVal(e.target.value)} 
+            data-testid={props.index} />
     </div>);
 }
 

@@ -70,7 +70,11 @@ function Fcontainer(props) {
         const out = []
 
         // convert to base 10 decimal
-        array.forEach(row => out.push(row.map(el => parseFloat(el, 10))));
+        array.forEach(row => out.push(row.map(el => {
+            // convert single dots and dashes (allowed by regex) to 0
+            el === '.' || el === '-'? el = 0: el = el;
+            return parseFloat(el, 10)}
+        )));
         return out;
     }
 

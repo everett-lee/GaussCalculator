@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import Matrix from './Matrix';
-import TextInput from './controls/TextInput';
-import Button from './controls/Button';
 import SwapButton from './controls/SwapButton';
 import FunctionContainer from './functioncontainer/FunctionContainer';
+import TopContainer from './TopContainer';
 
 function App() {
   const zeroMatrix = new Array(25).fill(0);
@@ -82,15 +81,8 @@ function App() {
 
   return (
     <div className='mainContainer'>
-      <div className='topContainer'>
-        <TextInput className='topInput' val={n}
-          f={setN} placeholder={'n'} />
-        <div className='topDiv'>X</div>
-        <TextInput className='topInput' val={m}
-          f={setM} placeholder={'m'} />
-        <Button name='Make matrix' f={makeArray} className={'topButton'} />
-        <Button name='Reset' f={resetMatrix} className={'topButton'} />
-      </div>
+      <TopContainer setN={setN} setM={setM} makeArray={makeArray}
+                    n={n} m={m} resetMatrix={resetMatrix}/>
       <div className='matrixContainer'>
         <div className='swapButtons'>
           {renderSwapButtons()}
@@ -98,7 +90,8 @@ function App() {
         <Matrix cols={dimensions.m} matrix={matrix} setMatrix={setMatrix} />
       </div>
       <div className='bottomContainer'>
-        <FunctionContainer />
+        <FunctionContainer rows={dimensions.n} getMatrix={arrayToMatrix}
+                            setMatrix={setMatrix} />
         <button className='bottomButton' />
         <button className='bottomButton' />
       </div>

@@ -1,10 +1,11 @@
 import React from 'react';
 import FcontainerTop from './FcontainerTop';
 
-function FunctionContainer() {
+function FunctionContainer(props) {
   return (
     <div className="functionContainer">
-      <FcontainerTop />
+      <FcontainerTop rows={props.rows} getMatrix={props.getMatrix}
+                      setMatrix={props.setMatrix} />
       <div className="fContainer">
         <div className="fDiv"> hi </div>
         <input className="fInput" />

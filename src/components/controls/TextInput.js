@@ -9,12 +9,16 @@ function TextInput(props) {
 
     const updateVal = (val) => {
         // show a red indicator if value is not valid
-        if (isNaN(val) || val < 1 || val > 10) {
+        if (props.inputTest(val)) {
             setStyle({ backgroundColor: '#ec3643' });
             sleep(500).then(x => setStyle({ backgroundColor: 'white' }));
             props.f('');
         } else {
-            props.f(Number(val));
+            if (props.number) {
+                props.f(Number(val));
+            } else {
+                props.f(val);
+            }
         }
     }
 

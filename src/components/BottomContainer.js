@@ -9,7 +9,7 @@ function BottomContainer(props) {
         <FunctionContainer rows={props.rows} 
         getMatrix={props.getMatrix}
         setMatrix={props.setMatrix} />  
-        <Button name={'↺'} className={'bottomButton'}/>
+        <Button name={'↺'} className={'bottomButton'} f={props.undoLast}/>
         <Button name={'Reduced echleon form'} className={'bottomButton'}/>
       </div>
     );

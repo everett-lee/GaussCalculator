@@ -1,36 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import Matrix from './Matrix';
 import SwapButton from './controls/SwapButton';
 import TopContainer from './TopContainer';
 import BottomContainer from './BottomContainer';
+import { HistoryContext } from './providers/HistoryProvider';
 
 function App() {
   const zeroMatrix = new Array(25).fill(0);
   const startDimensions = { n: 5, m: 5 };
 
+  const historyContext = useContext(HistoryContext); // stores history of past states
+
   const [dimensions, setDimensions] = useState(startDimensions); // dimension of array (nXm)
   const [n, setN] = useState('');
   const [m, setM] = useState('');
-  const [history, setHistory] = useState([]); // history of actions to faciliate undo operation
   const [matrix, setMatrix] = useState(zeroMatrix); // the matrix represented as a 1D array
   const [swapPair, setSwapPair] = useState([]); // two rows to be swapped
 
   const makeArray = () => {
+    resetMatrix()
     if (n === '' || m === '') {
-      resetMatrix()
       return;
     }
 
     const size = n * m;
     setDimensions({ n, m });
-    setMatrix(new Array(size).fill(0));
+
+    const matrix = new Array(size).fill(0);
+    updateMatrixState(matrix)
   }
 
+  // reset matrix to original dimensions and values
   const resetMatrix = () => {
     setN('');
     setM('');
     setDimensions(startDimensions);
     setMatrix(zeroMatrix);
+    historyContext.resetHistory({matrix: zeroMatrix, dimensions: startDimensions});
+  }
+
+  // gets previous state from history
+  // and update current state to reflect it
+  const undoLast = () => {
+    const last = historyContext.undo();
+
+    // history is empty
+    if (!last) {
+      resetMatrix();
+    } else {
+      setMatrix(last.matrix);
+      setDimensions(last.dimensions);
+    }
+  }
+
+  // update matrix state and save
+  // to history
+  const updateMatrixState = (newMatrix) => {
+    historyContext.addState({matrix, dimensions});
+    setMatrix(newMatrix)
   }
 
   // swap two rows in the matrix
@@ -53,7 +80,7 @@ function App() {
       arr[second] = temp;
 
       let flattened = arr.flatMap(el => el);
-      setMatrix(flattened);
+      updateMatrixState(flattened);
       setSwapPair([])
     }
   }
@@ -84,18 +111,19 @@ function App() {
   return (
     <div className='mainContainer'>
       <TopContainer setN={setN} setM={setM} makeArray={makeArray}
-                    n={n} m={m} resetMatrix={resetMatrix}/>
+        n={n} m={m} resetMatrix={resetMatrix} />
       <div className='matrixContainer'>
         <div className='swapButtons'>
           {renderSwapButtons()}
         </div>
-        <Matrix cols={dimensions.m} 
-        matrix={matrix} 
-        setMatrix={setMatrix} />
+        <Matrix cols={dimensions.m}
+          matrix={matrix}
+          setMatrix={updateMatrixState} />
       </div>
-      <BottomContainer rows={dimensions.n} 
+      <BottomContainer rows={dimensions.n}
         getMatrix={arrayToMatrix}
-        setMatrix={setMatrix}/>
+        setMatrix={updateMatrixState}
+        undoLast={undoLast} />
     </div>
   );
 }

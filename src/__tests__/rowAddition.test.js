@@ -1,5 +1,6 @@
 import React from 'react';
-import App from '../components/App.js';
+import { HistoryProvider } from '../components/providers/HistoryProvider';
+import App from '../components/App';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 
 /**
@@ -9,7 +10,7 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 afterEach(cleanup)
 
 test('The addition of two rows results in the correct output', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueTop');
     // second row selector
@@ -60,7 +61,7 @@ test('The addition of two rows results in the correct output', () => {
 })
 
 test('The subtraction of a row results in the correct output', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueTop');
     // second row selector
@@ -111,7 +112,7 @@ test('The subtraction of a row results in the correct output', () => {
 })
 
 test('The add of a row with non numeric values works as expected', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueTop');
     // second row selector
@@ -163,7 +164,7 @@ test('The add of a row with non numeric values works as expected', () => {
 })
 
 test('The addition of row to itself has no effect and logs error', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
     console.error = jest.fn()
 
     let input = queryByTestId('R1ValueTop');

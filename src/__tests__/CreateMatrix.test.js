@@ -1,11 +1,12 @@
 import React from 'react';
-import App from '../components/App.js';
+import { HistoryProvider } from '../components/providers/HistoryProvider';
+import App from '../components/App';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 
 afterEach(cleanup)
 
 test('A 5x5 matrix is displayed at page load', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     // there are 24 elements rendered (id is zero-indexed)
     let element = queryByTestId('24');
@@ -17,7 +18,7 @@ test('A 5x5 matrix is displayed at page load', () => {
 })
 
 test('A 3x4 matrix is displayed after inputs', () => {
-    const { getAllByDisplayValue, getByText, queryByTestId } = render(<App />);
+    const { getAllByDisplayValue, getByText, queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>);
 
     let elements = getAllByDisplayValue('');
 
@@ -38,7 +39,7 @@ test('A 3x4 matrix is displayed after inputs', () => {
 })
 
 test('The matrix is reset when button clicked', () => {
-    const { getAllByDisplayValue, getByText, queryByTestId } = render(<App />);
+    const { getAllByDisplayValue, getByText, queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>);
 
     let elements = getAllByDisplayValue('');
 

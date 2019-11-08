@@ -1,5 +1,6 @@
 import React from 'react';
-import App from '../components/App.js';
+import { HistoryProvider } from '../components/providers/HistoryProvider';
+import App from '../components/App';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 
 /**
@@ -9,7 +10,7 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 afterEach(cleanup)
 
 test('The multiplication of a row results in the correct output', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector
@@ -46,7 +47,7 @@ test('The multiplication of a row results in the correct output', () => {
 })
 
 test('The multiplication of a row by negative results in the correct output', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector
@@ -83,7 +84,7 @@ test('The multiplication of a row by negative results in the correct output', ()
 })
 
 test('The multiplication of a row by zero is not possible', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
     console.error = jest.fn()
 
     let input = queryByTestId('R1ValueBottom');
@@ -125,7 +126,7 @@ test('The multiplication of a row by zero is not possible', () => {
 })
 
 test('The multiplication of a row by .0 is not possible', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector
@@ -164,7 +165,7 @@ test('The multiplication of a row by .0 is not possible', () => {
 
 
 test('The division of a row results in the correct output', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector
@@ -204,7 +205,7 @@ test('The division of a row results in the correct output', () => {
 })
 
 test('The division of a row by decimal results in the correct output', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector
@@ -244,7 +245,7 @@ test('The division of a row by decimal results in the correct output', () => {
 })
 
 test('The division of a row by decimal by zero leaves state unchanged', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector
@@ -285,7 +286,7 @@ test('The division of a row by decimal by zero leaves state unchanged', () => {
 })
 
 test('The division of a row by decimal by .0 leaves state unchanged', () => {
-    const { queryByTestId } = render(<App />);
+    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector

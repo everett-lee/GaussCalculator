@@ -1,11 +1,12 @@
 import React from 'react';
-import App from '../components/App.js';
+import { HistoryProvider } from '../components/providers/HistoryProvider';
+import App from '../components/App';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 
 afterEach(cleanup)
 
 test('Two rows are swapped in 5x5 matrix', () => {
-    const { getByText, queryByTestId } = render(<App />);
+    const { getByText, queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     // elemetn 0,0
     let elementOne = queryByTestId('0');
@@ -36,7 +37,7 @@ test('Two rows are swapped in 5x5 matrix', () => {
 
 
 test('Row swapped with itself leaves matrix unchanged', () => {
-    const { getAllByDisplayValue, getByText, queryByTestId } = render(<App />);
+    const { getAllByDisplayValue, getByText, queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     // elemetn 0,0
     let elementOne = queryByTestId('0');

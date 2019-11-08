@@ -4,7 +4,7 @@ import App from '../components/App';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 
 /**
- * Test the row addition operation functions correctly
+ * Test the row scale operation functions correctly
  */
 
 afterEach(cleanup)

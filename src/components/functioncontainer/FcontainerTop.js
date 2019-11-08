@@ -67,11 +67,11 @@ function FcontainerTop(props) {
             <TextInput className='fInput' f={setR1Scale} val={R1Scale}
                 inputTest={inputDecimalTest} number={false}
                 testId={'scalarValueTop'} />
-            <div className='fDiv'> 🞄 R </div>
+            <div className='fDiv'> 🞄 Row </div>
             <TextInput className='fInput' f={setR1} val={R1}
                 inputTest={inputRowTest} number={true}
                 testId={'R1ValueTop'} />
-            <div className='fDiv'> &#43; R </div>
+            <div className='fDiv'> &#43; Row </div>
             <TextInput className='fInput' f={setR2} val={R2}
                 inputTest={inputRowTest} number={true}
                 testId={'R2ValueTop'} />

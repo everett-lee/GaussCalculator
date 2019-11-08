@@ -6,7 +6,6 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 /**
  * Test the row addition operation functions correctly
  */
-
 afterEach(cleanup)
 
 test('The addition of two rows results in the correct output', () => {

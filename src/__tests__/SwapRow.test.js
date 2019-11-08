@@ -3,6 +3,10 @@ import { HistoryProvider } from '../components/providers/HistoryProvider';
 import App from '../components/App';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 
+/**
+ * test swap action
+ */
+
 afterEach(cleanup)
 
 test('Two rows are swapped in 5x5 matrix', () => {

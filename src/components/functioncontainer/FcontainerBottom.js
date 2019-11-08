@@ -60,6 +60,7 @@ function FcontainerBottom(props) {
 
     return (
         <div className="fContainer">
+            <div className="fDivLong"> </div>
             <TextInput className='fInput' f={setR1Scale} val={R1Scale}
                 inputTest={inputDecimalTest} number={false}
                 testId={'scalarValueBottom'} />
@@ -69,7 +70,7 @@ function FcontainerBottom(props) {
                     testId={"setOperationButton"}
                     f={switchOperation} />
             </div>
-            <div className="fDivLong"> R </div>
+            <div className="fDiv"> Row </div>
             <TextInput className='fInput' f={setR1} val={R1}
                 inputTest={props.rowRangeTest} number={true}
                 testId={'R1ValueBottom'} />

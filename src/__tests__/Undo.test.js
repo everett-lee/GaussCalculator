@@ -6,7 +6,6 @@ import { render, fireEvent, cleanup } from '@testing-library/react';
 /**
  * test undo actions
  */
-
 afterEach(cleanup)
 
 test('Undo reverses row swap', () => {

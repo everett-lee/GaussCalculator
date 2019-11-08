@@ -125,29 +125,33 @@ input {
   margin: auto;
   display: flex;
   flex-direction: row;
+  flex-grow:1;
 }
 
 .fButton {  
   height: 100%;
-  width: 25%;
+  min-width: 30%;
+  flex-grow:1;
 }
 
 .fInput {
-  width: 5%;
+  max-width: 10%;
 }
 
 .fDiv, .fDivLong {
-  width: 10%;
+  width: 5%;
   height: 100%;
   background-color: rgb(210, 209, 219);
   font-size: 1em;
   text-align: center;
   vertical-align: middle;
   line-height: 1.5em;
+  flex-grow:1;
 }
 
 .fDivLong {
-  width: 20%;
+  width: 25%;
+  flex-grow:1;
 }
 
 .opButtonContainer {
@@ -155,6 +159,7 @@ input {
   height: 100%;
   display: flex;
   flex-direction: column;
+  flex-grow:1;
 }
 
 .opButton {  

@@ -7,11 +7,12 @@ import TopContainer from './TopContainer';
 function App() {
   const zeroMatrix = new Array(25).fill(0);
   const startDimensions = { n: 5, m: 5 };
-  const [dimensions, setDimensions] = useState(startDimensions);
+
+  const [dimensions, setDimensions] = useState(startDimensions); // dimension of array (nXm)
   const [n, setN] = useState('');
   const [m, setM] = useState('');
-  const [matrix, setMatrix] = useState(zeroMatrix);
-  const [swapPair, setSwapPair] = useState([]);
+  const [matrix, setMatrix] = useState(zeroMatrix); // the matrix represented as a 1D array
+  const [swapPair, setSwapPair] = useState([]); // two rows to be swapped
 
   const makeArray = () => {
     if (n === '' || m === '') {
@@ -56,7 +57,7 @@ function App() {
     }
   }
 
-  // converts the matrix which is currently in array form to
+  // converts the matrix, which is currently in array form, to
   // an array of arrays
   const arrayToMatrix = () => {
     const out = [];

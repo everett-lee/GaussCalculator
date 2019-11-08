@@ -2,11 +2,6 @@ import React from 'react';
 import App from '../components/App.js';
 import { render, fireEvent, cleanup } from '@testing-library/react';
 
-/**
- * Test the row addition operation functions correctly
- */
-
-
 afterEach(cleanup)
 
 test('Two rows are swapped in 5x5 matrix', () => {

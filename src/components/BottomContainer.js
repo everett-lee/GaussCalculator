@@ -3,15 +3,14 @@ import FunctionContainer from './functioncontainer/FunctionContainer';
 import Button from './controls/Button';
 
 function BottomContainer(props) {
-    
 
     return (
         <div className='bottomContainer'>
         <FunctionContainer rows={props.rows} 
         getMatrix={props.getMatrix}
         setMatrix={props.setMatrix} />  
-        <Button name={'↺'}/>
-        <button className='bottomButton' />
+        <Button name={'↺'} className={'bottomButton'}/>
+        <Button name={'Reduced echleon form'} className={'bottomButton'}/>
       </div>
     );
 }

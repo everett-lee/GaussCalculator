@@ -11,6 +11,7 @@ function App() {
   const [dimensions, setDimensions] = useState(startDimensions); // dimension of array (nXm)
   const [n, setN] = useState('');
   const [m, setM] = useState('');
+  const [history, setHistory] = useState([]); // history of actions to faciliate undo operation
   const [matrix, setMatrix] = useState(zeroMatrix); // the matrix represented as a 1D array
   const [swapPair, setSwapPair] = useState([]); // two rows to be swapped
 

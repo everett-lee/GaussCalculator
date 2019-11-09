@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import TextInput from '../controls/TextInput';
 import Button from '../controls/Button';
+import { performRowAddition } from '../rowoperations/rowOperations';
 
 /**
  * Stores logic and renders controls for row addition operation
  */
 function FcontainerTop(props) {
-    const [R1Scale, setR1Scale] = useState(1); // amount to scale row by
+    const [R1Scalar, setR1Scalar] = useState(1); // amount to scale row by
     const [R1, setR1] = useState(''); // first row used in operation
     const [R2, setR2] = useState(''); // second row used in operation
 
@@ -31,43 +32,14 @@ function FcontainerTop(props) {
         return flagOne || flagTwo;
     }
 
-    // adds a scaled R1 to R2 and updates matrix state
-    const performRowAddition = () => {
-        // invalid rows selected
-        if (props.rowRangeTest(R1) || props.rowRangeTest(R2)) {
-            console.error("Both rows must be selected")
-            return;
-        }
-
-        let R1index = R1 - 1; // rows are zero-indexed
-        let R2index = R2 - 1;
-
-        // attempt to parse the scalar value 
-        let parsedScalar = props.parseScalar(R1Scale);
-        if (!parsedScalar) {
-            // return if an invlid scalar was provided
-            return;
-        }
-
-        // get copy of matrix from the app class
-        let matrix = props.getMatrix();
-        matrix = props.convertToNumeric(matrix);
-
-        // scale R1 by the required amount
-        const scaledR1 = matrix[R1index].map(el => el *= parsedScalar)
-        // add scaled R1 to R2
-        for (let i = 0; i < matrix[R2index].length; i++) {
-            matrix[R2index][i] += scaledR1[i];
-        }
-
-        // flatten result and update parent class 
-        const flatMatrix = matrix.flatMap(el => el);
-        props.setMatrix(flatMatrix);
+    // call the perform row addition function in the row operations module
+    const callperformRowAddition = () => {
+        performRowAddition(R1, R2, R1Scalar, props.getMatrix, props.setMatrix)
     }
 
     return (
         <div className='fContainer'>
-            <TextInput className='fInput' f={setR1Scale} val={R1Scale}
+            <TextInput className='fInput' f={setR1Scalar} val={R1Scalar}
                 inputTest={inputDecimalTest} number={false}
                 testId={'scalarValueTop'} />
             <div className='fDiv'> 🞄 Row </div>
@@ -80,7 +52,7 @@ function FcontainerTop(props) {
                 inputTest={inputRowTest} number={true}
                 testId={'R2ValueTop'} placeholder={'Rⱼ'} />
             <Button className='fButton'
-                name={`${R1Scale} 🞄 R${R1} + R${R2} → R${R2}`} f={performRowAddition}
+                name={`${R1Scalar} 🞄 R${R1} + R${R2} → R${R2}`} f={callperformRowAddition}
                 testId={"rowAdditionButton"} />
         </div>
     )

@@ -8,6 +8,4 @@ function copyMatrix(matrix) {
     return copyMatrix;
 }
 
-//export default copyMatrix;
-
-module.exports = copyMatrix;
+export default copyMatrix;

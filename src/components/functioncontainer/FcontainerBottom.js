@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextInput from '../controls/TextInput';
 import Button from '../controls/Button';
+import { performRowScale } from '../rowoperations/rowOperations';
 
 /**
  * Stores logic and renders control for row scale operation
@@ -30,38 +31,9 @@ function FcontainerBottom(props) {
         return !RE.test(val) || val.length > maxLength || zeroFlag;
     }
 
-    // multiplies/divides R by some value
-    const performRowScale = () => {
-        let R1index = R1 - 1; // rows are zero-indexed in the code
-        if (R1index < 0) {
-            return;
-        }
-
-        // attempt to parse the scalar value 
-        let parsedScalar = props.parseScalar(R1Scale);
-        if (!parsedScalar) {
-            // return if an invlid scalar was provided
-            return;
-        }
-
-        // get copy of matrix from the app class
-        let matrix = props.getMatrix();
-        matrix = props.convertToNumeric(matrix);
-
-        // scale R1 by the required amount
-        const scaledR1 = matrix[R1index].map( el => {
-            if (operation === '🞄') {
-                return el *= parsedScalar;
-            } else {
-                return el /= parsedScalar;
-            }
-        });
-
-        matrix[R1index] = scaledR1;
-
-        // flatten result and update parent class 
-        const flatMatrix = matrix.flatMap(el => el);
-        props.setMatrix(flatMatrix);
+    // call perform row scale function from row operations module
+    const callperformRowScale = () => {
+        performRowScale(R1, R1Scale, operation, props.getMatrix, props.setMatrix);
     }
 
     return (
@@ -83,8 +55,8 @@ function FcontainerBottom(props) {
                 placeholder={'Rᵢ'} />
             <Button className='fButton'
                 name={`R${R1} ${operation} ${R1Scale} → R${R1}`}
-                testId={"rowScaleButton"} 
-                f={performRowScale} />
+                testId={"rowScaleButton"}
+                f={callperformRowScale} />
         </div>
     );
 }

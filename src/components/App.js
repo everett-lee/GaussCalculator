@@ -61,8 +61,8 @@ function App() {
     setMatrix(newMatrix)
   }
 
-  // converts the matrix, which is currently in array form, to
-  // an array of arrays
+  // converts the matrix, which is currently in 1D array form, to
+  // 2D array
   const arrayToMatrix = () => {
     const out = [];
     const cols = dimensions.n;

@@ -70,11 +70,12 @@ function FcontainerTop(props) {
             <div className='fDiv'> 🞄 Row </div>
             <TextInput className='fInput' f={setR1} val={R1}
                 inputTest={inputRowTest} number={true}
-                testId={'R1ValueTop'} />
+                testId={'R1ValueTop'} placeholder={'Rᵢ'} />
+                
             <div className='fDiv'> &#43; Row </div>
             <TextInput className='fInput' f={setR2} val={R2}
                 inputTest={inputRowTest} number={true}
-                testId={'R2ValueTop'} />
+                testId={'R2ValueTop'} placeholder={'Rⱼ'} />
             <Button className='fButton'
                 name={`${R1Scale} 🞄 R${R1} + R${R2} → R${R2}`} f={performRowAddition}
                 testId={"rowAdditionButton"} />

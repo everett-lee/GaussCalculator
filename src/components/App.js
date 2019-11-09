@@ -10,7 +10,7 @@ function App() {
 
   const historyContext = useContext(HistoryContext); // stores history of past states
 
-  const [dimensions, setDimensions] = useState(startDimensions); // dimension of array (nXm)
+  const [dimensions, setDimensions] = useState(startDimensions); // dimension of array (mXn)
   const [m, setM] = useState('');
   const [n, setN] = useState('');
   const [matrix, setMatrix] = useState(zeroMatrix); // the matrix represented as a 1D array

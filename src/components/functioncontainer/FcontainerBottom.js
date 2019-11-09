@@ -76,7 +76,8 @@ function FcontainerBottom(props) {
             <div className="fDiv"> Row </div>
             <TextInput className='fInput' f={setR1} val={R1}
                 inputTest={props.rowRangeTest} number={true}
-                testId={'R1ValueBottom'} />
+                testId={'R1ValueBottom'}
+                placeholder={'Rᵢ'} />
             <Button className='fButton'
                 name={`R${R1} ${operation} ${R1Scale} → R${R1}`}
                 testId={"rowScaleButton"} 

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Cell from './Cell';
 
 function Matrix(props) {
     const gridStyle = { gridTemplateColumns: `repeat(${props.cols}, minmax(auto, 1fr))` };
+
 
     // render each cell of the matrix using dimensions 
     // passed in props
@@ -13,8 +14,8 @@ function Matrix(props) {
                 let i = count;
                 count++;
 
-                return <Cell index={i} key={count}
-                    matrix={props.matrix} setMatrix={props.setMatrix} cols={props.cols}/>
+                return <Cell index={i} key={i} matrix={props.matrix} 
+                        setMatrix={props.setMatrix} cols={props.cols} />
             })
         );
     };

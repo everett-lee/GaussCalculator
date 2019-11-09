@@ -30,6 +30,9 @@ function FcontainerBottom(props) {
     // multiplies/divides R by some value
     const performRowScale = () => {
         let R1index = R1 - 1; // rows are zero-indexed in the code
+        if (R1index < 0) {
+            return;
+        }
 
         // attempt to parse the scalar value 
         let parsedScalar = props.parseScalar(R1Scale);

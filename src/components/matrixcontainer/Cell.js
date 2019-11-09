@@ -1,15 +1,13 @@
-import React, { useState } from 'react';
-import sleep from './utils/Sleep';
+import React from 'react';
+import sleep from '../utils/Sleep';
 
 function Cell(props) {
-    // // the final column (the constants) should have a different colour
-    // const styleCell = (i) =>  {
-    //     // the index of the item mod |columns| is |columns|-1 
-    //     const cellColour = (i % props.cols) === props.cols-1? '#96f2ff': 'white';
-    //     return { backgroundColor: cellColour }
-    // }   
-
-    const [style, setStyle] = useState({ backgroundColor: 'white' });
+    const getColour = (i) => {
+        // the index of the item mod |columns| is |columns|-1 
+        const cellColour = (i % props.cols) === props.cols - 1 ? '#cecece' : 'white';
+        
+        return { backgroundColor: cellColour }
+    }
 
     //update the matrix state
     const updateState = (val) => {
@@ -23,10 +21,11 @@ function Cell(props) {
         // then optional digits 
         let RE = /^-{0,1}\d*\.{0,1}\d*$/;
         if (!RE.test(val)) {
-            // flash red to indicate invalid input
-            setStyle({ backgroundColor: '#ec3643' });
-            // return to white
-            sleep(100).then(x => setStyle(props.style));
+            return;
+            // // flash red to indicate invalid input
+            // setStyle({ backgroundColor: '#ec3643' });
+            // // return to white
+            // sleep(100).then(x => setStyle(props.style));
         } else {
             updateState(val)
         }
@@ -36,7 +35,7 @@ function Cell(props) {
         <div className='cell'>
             <input type='text' className='numInput'
                 value={props.matrix[props.index]}
-                style={style}
+                style={getColour(props.index)}
                 onChange={(e) => updateVal(e.target.value)}
                 data-testid={props.index} />
         </div>

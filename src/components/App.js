@@ -1,31 +1,29 @@
 import React, { useState, useContext } from 'react';
-import Matrix from './Matrix';
-import SwapButton from './controls/SwapButton';
 import TopContainer from './TopContainer';
 import BottomContainer from './BottomContainer';
 import { HistoryContext } from './providers/HistoryProvider';
-import sleep from './utils/Sleep';
+import MatrixContainer from './matrixcontainer/MatrixContainer';
 
 function App() {
   const zeroMatrix = new Array(25).fill(0);
-  const startDimensions = { n: 5, m: 5 };
+  const startDimensions = { m: 5, n: 5 };
 
   const historyContext = useContext(HistoryContext); // stores history of past states
 
   const [dimensions, setDimensions] = useState(startDimensions); // dimension of array (nXm)
-  const [n, setN] = useState('');
   const [m, setM] = useState('');
+  const [n, setN] = useState('');
   const [matrix, setMatrix] = useState(zeroMatrix); // the matrix represented as a 1D array
   const [swapPair, setSwapPair] = useState([]); // two rows to be swapped
 
   const makeArray = () => {
     resetMatrix()
-    if (n === '' || m === '') {
+    if (m === '' || n === '') {
       return;
     }
 
-    const size = n * m;
-    setDimensions({ n, m });
+    const size = m * n;
+    setDimensions({ m, n });
 
     const matrix = new Array(size).fill(0);
     updateMatrixState(matrix)
@@ -38,7 +36,7 @@ function App() {
     setDimensions(startDimensions);
     setMatrix(zeroMatrix)
     setSwapPair([]);
-    historyContext.resetHistory({matrix: zeroMatrix, dimensions: startDimensions});
+    historyContext.resetHistory({ matrix: zeroMatrix, dimensions: startDimensions });
   }
 
   // gets previous state from history
@@ -58,33 +56,8 @@ function App() {
   // update matrix state and save
   // to history
   const updateMatrixState = (newMatrix) => {
-    historyContext.addState({matrix, dimensions});
+    historyContext.addState({ matrix, dimensions });
     setMatrix(newMatrix)
-  }
-
-  // swap two rows in the matrix
-  const doSwap = (i) => {
-    let pair = swapPair;
-    pair.push(i);
-    setSwapPair(pair.slice(0));
-
-    // if two rows have been selected to swap
-    if (swapPair.length === 2) {
-      // indexes of rows being swapped
-      let first = swapPair[0];
-      let second = swapPair[1];
-
-      let arr = arrayToMatrix();
-
-      // the row being overwritten
-      let temp = arr[first];
-      arr[first] = arr[second];
-      arr[second] = temp;
-
-      let flattened = arr.flatMap(el => el);
-      updateMatrixState(flattened);
-      setSwapPair([])
-    }
   }
 
   // converts the matrix, which is currently in array form, to
@@ -99,39 +72,23 @@ function App() {
     return out;
   }
 
-  const renderSwapButtons = () => {
-    let count = 0;
-    // there should be as many buttons as rows
-    const arr = new Array(dimensions.n).fill(0);
-
-    return arr.map(el => {
-      let i = count;
-      count++;
-
-      let clicked = false;
-      // if this button has been clicked
-      if (i === swapPair[0] || i === swapPair[1]) {
-        clicked = true;
-      }
-
-      return <SwapButton i={i} key={count} name={`⟺ Row ${count}`}
-        f={doSwap} clicked={clicked} />
-    })
+  const makeColHeaders = () => {
+    const emptyArray = new Array(dimensions.n).fill(0);
+    let i = 0;
+    return (
+        emptyArray.map( el => <div>{++i}</div>)
+    );
   }
 
   return (
     <div className='mainContainer'>
-      <TopContainer setN={setN} setM={setM} makeArray={makeArray}
-        n={n} m={m} resetMatrix={resetMatrix} />
-      <div className='matrixContainer'>
-        <div className='swapButtons'>
-          {renderSwapButtons()}
-        </div>
-        <Matrix cols={dimensions.m}
-          matrix={matrix}
-          setMatrix={updateMatrixState} />
-      </div>
-      <BottomContainer rows={dimensions.n}
+      <TopContainer setM={setM} setN={setN} makeArray={makeArray}
+        m={m} n={n} resetMatrix={resetMatrix} />
+      <div className='topRow'>{makeColHeaders()}</div>
+      <MatrixContainer m={dimensions.m} n={dimensions.n} swapPair={swapPair}
+                       setSwapPair={setSwapPair} arrayToMatrix={arrayToMatrix}
+                       matrix={matrix} setMatrix={updateMatrixState} />
+      <BottomContainer rows={dimensions.m}
         getMatrix={arrayToMatrix}
         setMatrix={updateMatrixState}
         undoLast={undoLast} />

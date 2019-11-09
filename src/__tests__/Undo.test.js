@@ -11,6 +11,9 @@ afterEach(cleanup)
 test('Undo reverses row swap', () => {
     const { getByText, queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>);
 
+    // reset matrix to zero matrix
+    fireEvent.click(getByText(/reset/i));
+
     // elemetn 0,0
     let elementOne = queryByTestId('0');
     fireEvent.change(elementOne, { target: { value: 11 } })
@@ -113,7 +116,11 @@ test('Repeated undo actions leave matrix in original state', () => {
 
 
 test('Undo clears cell values', () => {
-    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>);
+    const { queryByTestId, getByText } = render(<HistoryProvider><App /></HistoryProvider>);
+
+    // reset matrix to zero matrix
+    fireEvent.click(getByText(/reset/i));
+
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector

@@ -6,17 +6,32 @@ import MatrixContainer from './matrixcontainer/MatrixContainer';
 import TopRow from './toprow/TopRow';
 
 function App() {
-  const zeroMatrix = new Array(25).fill(0);
   const startDimensions = { m: 5, n: 5 };
+  const zeroMatrix = new Array(25).fill(0);
+
+  // create an array with random values as starting state
+  const makeRandomArray = () => {
+    const min = -10;
+    const max = 10;
+
+    const size = startDimensions.m * startDimensions.n;
+    const arr = new Array(size).fill(0);
+    
+    // map each 0 element to a random member in range min-max
+    return arr.map( el => {
+      return Math.floor(Math.random() * (max - min) + min);
+    });
+  }
 
   const historyContext = useContext(HistoryContext); // stores history of past states
 
   const [dimensions, setDimensions] = useState(startDimensions); // dimension of array (mXn)
   const [m, setM] = useState('');
   const [n, setN] = useState('');
-  const [matrix, setMatrix] = useState(zeroMatrix); // the matrix represented as a 1D array
+  const [matrix, setMatrix] = useState(makeRandomArray()); // the matrix represented as a 1D array
   const [swapPair, setSwapPair] = useState([]); // two rows to be swapped
 
+  // create an array of the required dimensions
   const makeArray = () => {
     resetMatrix()
     if (m === '' || n === '') {

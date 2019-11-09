@@ -110,8 +110,12 @@ test('The subtraction of a row results in the correct output', () => {
     expect(element.value).toBe('-12.5')
 })
 
-test('The add of a row with non numeric values works as expected', () => {
-    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
+test('The addition of a row with non numeric values works as expected', () => {
+    const { queryByTestId, queryByText } = render(<HistoryProvider><App /></HistoryProvider>,);
+
+    // reset matrix to zero matrix
+    fireEvent.click(queryByText(/reset/i));
+
 
     let input = queryByTestId('R1ValueTop');
     // second row selector

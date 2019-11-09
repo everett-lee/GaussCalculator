@@ -1,5 +1,5 @@
 /**
- * Contains logic for the row operations
+ * Contains logic for the row addition and row scale operations
  */
 
 // covert all cell values to numbers

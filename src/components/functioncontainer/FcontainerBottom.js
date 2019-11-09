@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import TextInput from '../controls/TextInput';
 import Button from '../controls/Button';
-import { performRowScale } from '../rowoperations/rowOperations';
+import { performRowScale } from '../rowoperations/AdditionAndScaleOperations';
 
 /**
- * Stores logic and renders control for row scale operation
+ *  renders control for row scale operation
  */
 function FcontainerBottom(props) {
     const [R1Scale, setR1Scale] = useState(1); // amount to scale row by
     const [R1, setR1] = useState(''); // row used in operation
-    const [operation, setOperation] = useState('🞄')
+    const [operation, setOperation] = useState('🞄') // multiply or divide
 
     // switch between division and multiplication
     const switchOperation = () => {
@@ -39,20 +39,20 @@ function FcontainerBottom(props) {
     return (
         <div className="fContainer">
             <div className="fDivLong"> </div>
-            <TextInput className='fInput' f={setR1Scale} val={R1Scale}
-                inputTest={inputDecimalTest} number={false}
-                testId={'scalarValueBottom'} />
+            <div className="fDiv"> Row </div>
+            <TextInput className='fInput' f={setR1} val={R1}
+                inputTest={props.rowRangeTest} number={true}
+                testId={'R1ValueBottom'}
+                placeholder={'Rᵢ'} />
             <div className="opButtonContainer">
                 <Button className='opButton'
                     name={operation}
                     testId={"setOperationButton"}
                     f={switchOperation} />
             </div>
-            <div className="fDiv"> Row </div>
-            <TextInput className='fInput' f={setR1} val={R1}
-                inputTest={props.rowRangeTest} number={true}
-                testId={'R1ValueBottom'}
-                placeholder={'Rᵢ'} />
+            <TextInput className='fInput' f={setR1Scale} val={R1Scale}
+                inputTest={inputDecimalTest} number={false}
+                testId={'scalarValueBottom'} />
             <Button className='fButton'
                 name={`R${R1} ${operation} ${R1Scale} → R${R1}`}
                 testId={"rowScaleButton"}

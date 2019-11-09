@@ -4,6 +4,7 @@ import copyMatrix from '../utils/CopyMatrix';
  * Algorithm to convert input matrix to reduced row echelon form. Based on
  * pseudocode from https://rosettacode.org/wiki/Reduced_row_echelon_form
  */
+
 function convertMatrix(matrix) {
     matrix = copyMatrix(matrix); // create copy
 
@@ -17,14 +18,13 @@ function convertMatrix(matrix) {
         if (lead >= colCount) {
             return matrix;
         }
-
         let i = r;
 
         // when leading cell in this row is a zero
         if (matrix[i][lead] === 0) {
             let res = dealWithZeroLead(matrix, i, r, lead, rowCount, colCount);
             // exceeded bounds of matrix
-            if (res[0] === - 1) {
+            if (res[0] === -1) {
                 return matrix;
             } else {
                 [i, lead] = [...res];
@@ -62,7 +62,7 @@ function removeNegativeZero(matrix) {
 
     matrix.forEach(row => out
         .push(row
-            .map(el => el === -0 ? 0 : el)))
+            .map(el => el === -0? 0: el)))
 
     return out;
 }

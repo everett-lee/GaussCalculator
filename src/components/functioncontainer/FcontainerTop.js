@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import TextInput from '../controls/TextInput';
 import Button from '../controls/Button';
-import { performRowAddition } from '../rowoperations/rowOperations';
+import { performRowAddition } from '../rowoperations/AdditionAndScaleOperations';
 
 /**
- * Stores logic and renders controls for row addition operation
+ * Stores and renders controls for row addition operation
  */
 function FcontainerTop(props) {
     const [R1Scalar, setR1Scalar] = useState(1); // amount to scale row by

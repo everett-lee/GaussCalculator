@@ -93,7 +93,7 @@ function App() {
       <TopContainer setM={setM} setN={setN} makeArray={makeArray}
         m={m} n={n} resetMatrix={resetMatrix} />
       <TopRow cols={dimensions.n}/>
-      <MatrixContainer m={dimensions.m} n={dimensions.n} swapPair={swapPair}
+      <MatrixContainer dimensions={dimensions} swapPair={swapPair}
                        setSwapPair={setSwapPair} arrayToMatrix={arrayToMatrix}
                        matrix={matrix} setMatrix={updateMatrixState} />
       <BottomContainer rows={dimensions.m}

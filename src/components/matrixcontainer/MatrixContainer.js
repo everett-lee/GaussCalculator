@@ -1,42 +1,25 @@
 import React from 'react';
 import Matrix from './Matrix';
 import SwapButton from '../controls/SwapButton';
+import doSwap from'../rowoperations/SwapOperation';
 
 /**
- * Contains the matrix and side buttons. Also contains 
+ * Contains the matrix and side buttons and contains 
  * logic for the swap rows operation.
  */
 function MatrixContainer(props) {
-    // swap two rows in the matrix
-    const doSwap = (i) => {
-        let pair = props.swapPair;
-        pair.push(i);
-        props.setSwapPair(pair.slice(0));
-
-        // if two rows have been selected to swap
-        if (props.swapPair.length === 2) {
-            // indexes of rows being swapped
-            let first = props.swapPair[0];
-            let second = props.swapPair[1];
-
-            let arr = props.arrayToMatrix();
-
-            // the row being overwritten
-            let temp = arr[first];
-            arr[first] = arr[second];
-            arr[second] = temp;
-
-            let flattened = arr.flatMap(el => el);
-            props.setMatrix(flattened);
-            props.setSwapPair([])
-        }
+    
+    // call the doSwap operation to swap two selected
+    // rows
+    const callDoSwap = (i) => {
+        doSwap(i, props.swapPair, props.setSwapPair, 
+            props.arrayToMatrix, props.setMatrix)
     }
-
 
     const renderSwapButtons = () => {
         let count = 0;
         // there should be as many buttons as rows
-        const arr = new Array(props.m).fill(0);
+        const arr = new Array(props.dimensions.m).fill(0);
 
         return arr.map(el => {
             let i = count;
@@ -49,7 +32,7 @@ function MatrixContainer(props) {
             }
 
             return <SwapButton i={i} key={count} name={`⟺ Row ${count}`}
-                f={doSwap} clicked={clicked} />
+                f={callDoSwap} clicked={clicked} />
         })
     }
 
@@ -58,7 +41,7 @@ function MatrixContainer(props) {
             <div className='swapButtons'>
                 {renderSwapButtons()}
             </div>
-            <Matrix cols={props.n}
+            <Matrix cols={props.dimensions.n}
                 matrix={props.matrix}
                 setMatrix={props.setMatrix} />
         </div>

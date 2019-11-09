@@ -11,7 +11,7 @@
   border: black 2px solid;
   border-left: black 3px solid;
   width: 35%;
-  height: 4em;
+  height: 3.5em;
   margin: auto;
   display: flex;
   flex-direction: row;
@@ -35,13 +35,13 @@
   font-size: 2em;
   text-align: center;
   vertical-align: middle;
-  line-height: 2em;
+  line-height: 1.75em;
 }
 
 .topButton {  
   width: 35%;
   box-shadow: 0px 0px 1px 1px #888888;
-  font-size: 1.25em;
+  font-size: 1em;
   font-weight: bold;
 }
 
@@ -107,7 +107,7 @@
   left: 0;
   outline: none;
   border: 1px solid black;
-  font-size: 1em;
+  font-size: 1.25em;
 }
 
 .bottomContainer {
@@ -175,7 +175,7 @@
   font-size: 1em;
   text-align: center;
   vertical-align: middle;
-  line-height: 3em;
+  line-height: 4em;
   flex-grow:1;
 }
 

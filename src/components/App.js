@@ -3,6 +3,7 @@ import TopContainer from './TopContainer';
 import BottomContainer from './BottomContainer';
 import { HistoryContext } from './providers/HistoryProvider';
 import MatrixContainer from './matrixcontainer/MatrixContainer';
+import TopRow from './toprow/TopRow';
 
 function App() {
   const zeroMatrix = new Array(25).fill(0);
@@ -72,19 +73,11 @@ function App() {
     return out;
   }
 
-  const makeColHeaders = () => {
-    const emptyArray = new Array(dimensions.n).fill(0);
-    let i = 0;
-    return (
-        emptyArray.map( el => <div>{++i}</div>)
-    );
-  }
-
   return (
     <div className='mainContainer'>
       <TopContainer setM={setM} setN={setN} makeArray={makeArray}
         m={m} n={n} resetMatrix={resetMatrix} />
-      <div className='topRow'>{makeColHeaders()}</div>
+      <TopRow cols={dimensions.n}/>
       <MatrixContainer m={dimensions.m} n={dimensions.n} swapPair={swapPair}
                        setSwapPair={setSwapPair} arrayToMatrix={arrayToMatrix}
                        matrix={matrix} setMatrix={updateMatrixState} />

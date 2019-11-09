@@ -1,7 +1,7 @@
 import React, { useState, createContext } from 'react';
 
 /**
- *  Contains the history of actions stored as a stack
+ *  Contains the history of states stored as a stack
  */
 const HistoryContext = createContext();
 

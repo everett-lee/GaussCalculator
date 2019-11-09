@@ -1,6 +1,8 @@
 import React from 'react';
-import sleep from '../utils/Sleep';
 
+/**
+ * A cell in the matrix. Is used to input and display values
+ */
 function Cell(props) {
     const getColour = (i) => {
         // the index of the item mod |columns| is |columns|-1 
@@ -21,11 +23,8 @@ function Cell(props) {
         // then optional digits 
         let RE = /^-{0,1}\d*\.{0,1}\d*$/;
         if (!RE.test(val)) {
+            // return on invalid input 
             return;
-            // // flash red to indicate invalid input
-            // setStyle({ backgroundColor: '#ec3643' });
-            // // return to white
-            // sleep(100).then(x => setStyle(props.style));
         } else {
             updateState(val)
         }

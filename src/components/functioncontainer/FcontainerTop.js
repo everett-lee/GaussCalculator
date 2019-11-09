@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import TextInput from '../controls/TextInput';
 import Button from '../controls/Button';
 
+/**
+ * Stores logic and renders controls for row addition operation
+ */
 function FcontainerTop(props) {
     const [R1Scale, setR1Scale] = useState(1); // amount to scale row by
     const [R1, setR1] = useState(''); // first row used in operation

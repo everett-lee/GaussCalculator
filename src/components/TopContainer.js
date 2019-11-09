@@ -2,6 +2,7 @@ import React from 'react';
 import TextInput from './controls/TextInput';
 import Button from './controls/Button';
 
+// test input for dimensions. m,n must be between 1 and 10.
 function TopContainer(props) {
   const topInputTest = (val) => {
     return (isNaN(val) || val < 1 || val > 10);

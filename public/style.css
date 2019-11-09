@@ -20,6 +20,7 @@
 
 .topInput {
   width: 10%;
+  border: black 1px solid;
   font-size: 2em;
   text-align: center;
   vertical-align: middle;
@@ -30,7 +31,7 @@
   width: 10%;
   border: black 1px solid;
   color: black;
-  background-color: #3CBC8D;  
+  background-color:  #cecece;  
   font-size: 2em;
   text-align: center;
   vertical-align: middle;
@@ -49,10 +50,18 @@
 }
 
 .topRow {
-  width: 1600px;
+  width: 95.2%;
+  float:right;
   border: black 1px solid;
   display: flex;
   flex-direction: row;
+}
+
+.topRowItem{
+  flex-grow: 1;
+  text-align: center;
+  border-right: black 1px solid;
+  border-left: black 1px solid;
 }
 
 .matrixContainer {

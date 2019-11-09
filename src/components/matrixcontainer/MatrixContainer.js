@@ -2,6 +2,10 @@ import React from 'react';
 import Matrix from './Matrix';
 import SwapButton from '../controls/SwapButton';
 
+/**
+ * Contains the matrix and side buttons. Also contains 
+ * logic for the swap rows operation.
+ */
 function MatrixContainer(props) {
     // swap two rows in the matrix
     const doSwap = (i) => {

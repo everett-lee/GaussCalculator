@@ -3,7 +3,7 @@ import FcontainerTop from './FcontainerTop';
 import FcontainerBottom from './FcontainerBottom';
 
 /**
- * contains both child components of the bottom
+ * renders both child components of the bottom
  * container 
  */
 function FunctionContainer(props) {

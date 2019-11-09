@@ -14,15 +14,15 @@ test('Two rows are swapped in 5x5 matrix', () => {
 
     // elemetn 0,0
     let elementOne = queryByTestId('0');
-    fireEvent.change(elementOne, { target: { value: 11 } })
+    fireEvent.change(elementOne, { target: { value: 11 } });
 
     // element 1,0 
     let elementTwo = queryByTestId('5');
-    fireEvent.change(elementTwo, { target: { value: 42 } })
+    fireEvent.change(elementTwo, { target: { value: 42 } });
 
     // element 3,4 
     let elementThree = queryByTestId('19');
-    fireEvent.change(elementThree, { target: { value: 12 } })
+    fireEvent.change(elementThree, { target: { value: 12 } });
 
     expect(elementOne.value).toBe('11');
     expect(elementTwo.value).toBe('42');
@@ -45,15 +45,15 @@ test('Row swapped with itself leaves matrix unchanged', () => {
 
     // elemetn 0,0
     let elementOne = queryByTestId('0');
-    fireEvent.change(elementOne, { target: { value: 11 } })
+    fireEvent.change(elementOne, { target: { value: 11 } });
 
     // element 1,0 
     let elementTwo = queryByTestId('5');
-    fireEvent.change(elementTwo, { target: { value: 42 } })
+    fireEvent.change(elementTwo, { target: { value: 42 } });
 
     // element 3,4 
     let elementThree = queryByTestId('19');
-    fireEvent.change(elementThree, { target: { value: 12 } })
+    fireEvent.change(elementThree, { target: { value: 12 } });
 
     expect(elementOne.value).toBe('11');
     expect(elementTwo.value).toBe('42');

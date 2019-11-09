@@ -21,19 +21,19 @@ test('A 3x4 matrix is displayed after inputs', () => {
     const { getByText, queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>);
 
      // create a 3x4 matrix
-     let input = queryByTestId(/minput/i)
-     fireEvent.change(input, { target: { value: 3 } })
-     input = queryByTestId(/ninput/i)
-     fireEvent.change(input, { target: { value: 4 } })
+     let input = queryByTestId(/minput/i);
+     fireEvent.change(input, { target: { value: 3 } });
+     input = queryByTestId(/ninput/i);
+     fireEvent.change(input, { target: { value: 4 } });
 
     fireEvent.click(getByText(/make matrix/i));
 
     // there are 11 elements rendered
-    let element = queryByTestId('11')
+    let element = queryByTestId('11');
     expect(element).not.toBeNull();
 
     // and no more 
-    element = queryByTestId('13')
+    element = queryByTestId('13');
     expect(element).toBeNull();
 })
 
@@ -43,18 +43,18 @@ test('The matrix is reset when button clicked', () => {
     let elements = getAllByDisplayValue('');
 
     let input = elements[0];
-    fireEvent.change(input, { target: { value: 3 } })
+    fireEvent.change(input, { target: { value: 3 } });
     input = elements[1];
-    fireEvent.change(input, { target: { value: 4 } })
+    fireEvent.change(input, { target: { value: 4 } });
 
     fireEvent.click(getByText(/make matrix/i));
 
     // there are 11 elements rendered
-    let element = queryByTestId('11')
+    let element = queryByTestId('11');
     expect(element).not.toBeNull();
 
     // and no more 
-    element = queryByTestId('13')
+    element = queryByTestId('13');
     expect(element).toBeNull();
 
     fireEvent.click(getByText(/reset/i));

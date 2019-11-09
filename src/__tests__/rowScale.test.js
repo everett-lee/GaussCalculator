@@ -89,22 +89,22 @@ test('The multiplication of a row by zero is not possible', () => {
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector
-    fireEvent.change(input, { target: { value: '1' } })
+    fireEvent.change(input, { target: { value: '1' } });
 
     let scalarInput = queryByTestId('scalarValueBottom');
     fireEvent.change(scalarInput, { target: { value: '0' } })
 
     // top row: 1x + 2y + 0z + -4w = 5
     input = queryByTestId('0');
-    fireEvent.change(input, { target: { value: '1' } })
+    fireEvent.change(input, { target: { value: '1' } });
     input = queryByTestId('1');
-    fireEvent.change(input, { target: { value: '2' } })
+    fireEvent.change(input, { target: { value: '2' } });
     input = queryByTestId('2');
-    fireEvent.change(input, { target: { value: '0' } })
+    fireEvent.change(input, { target: { value: '0' } });
     input = queryByTestId('3');
-    fireEvent.change(input, { target: { value: '-4' } })
+    fireEvent.change(input, { target: { value: '-4' } });
     input = queryByTestId('4');
-    fireEvent.change(input, { target: { value: '5' } })
+    fireEvent.change(input, { target: { value: '5' } });
 
     fireEvent.click(queryByTestId(/rowScaleButton/i));
 
@@ -114,15 +114,15 @@ test('The multiplication of a row by zero is not possible', () => {
     // state is unchanged 
     // result: 1x + 2y + 0z + -4w = 5
     let element = queryByTestId('0');
-    expect(element.value).toBe('1')
+    expect(element.value).toBe('1');
     element = queryByTestId('1');
-    expect(element.value).toBe('2')
+    expect(element.value).toBe('2');
     element = queryByTestId('2');
-    expect(element.value).toBe('0')
+    expect(element.value).toBe('0');
     element = queryByTestId('3');
-    expect(element.value).toBe('-4')
+    expect(element.value).toBe('-4');
     element = queryByTestId('4');
-    expect(element.value).toBe('5')
+    expect(element.value).toBe('5');
 })
 
 test('The multiplication of a row by .0 is not possible', () => {
@@ -130,37 +130,37 @@ test('The multiplication of a row by .0 is not possible', () => {
 
     let input = queryByTestId('R1ValueBottom');
     // second row selector
-    fireEvent.change(input, { target: { value: '1' } })
+    fireEvent.change(input, { target: { value: '1' } });
 
     let scalarInput = queryByTestId('scalarValueBottom');
-    fireEvent.change(scalarInput, { target: { value: '.0' } })
+    fireEvent.change(scalarInput, { target: { value: '.0' } });
 
     // top row: 1x + 2y + 0z + -4w = 5
     input = queryByTestId('0');
-    fireEvent.change(input, { target: { value: '1' } })
+    fireEvent.change(input, { target: { value: '1' } });
     input = queryByTestId('1');
-    fireEvent.change(input, { target: { value: '2' } })
+    fireEvent.change(input, { target: { value: '2' } });
     input = queryByTestId('2');
-    fireEvent.change(input, { target: { value: '0' } })
+    fireEvent.change(input, { target: { value: '0' } });
     input = queryByTestId('3');
-    fireEvent.change(input, { target: { value: '-4' } })
+    fireEvent.change(input, { target: { value: '-4' } });
     input = queryByTestId('4');
-    fireEvent.change(input, { target: { value: '5' } })
+    fireEvent.change(input, { target: { value: '5' } });
 
     fireEvent.click(queryByTestId(/rowScaleButton/i));
 
     // state is unchanged 
     // result: 1x + 2y + 0z + -4w = 5
     let element = queryByTestId('0');
-    expect(element.value).toBe('1')
+    expect(element.value).toBe('1');
     element = queryByTestId('1');
-    expect(element.value).toBe('2')
+    expect(element.value).toBe('2');
     element = queryByTestId('2');
-    expect(element.value).toBe('0')
+    expect(element.value).toBe('0');
     element = queryByTestId('3');
-    expect(element.value).toBe('-4')
+    expect(element.value).toBe('-4');
     element = queryByTestId('4');
-    expect(element.value).toBe('5')
+    expect(element.value).toBe('5');
 })
 
 

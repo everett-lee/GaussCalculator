@@ -42,7 +42,8 @@ function App() {
     setDimensions({ m, n });
 
     const matrix = new Array(size).fill(0);
-    updateMatrixState(matrix)
+    historyContext.resetHistory({ matrix: zeroMatrix, dimensions: startDimensions });
+    updateMatrixState(matrix);
   }
 
   // reset matrix to original dimensions and values
@@ -50,7 +51,7 @@ function App() {
     setN('');
     setM('');
     setDimensions(startDimensions);
-    setMatrix(zeroMatrix)
+    setMatrix(zeroMatrix);
     setSwapPair([]);
     historyContext.resetHistory({ matrix: zeroMatrix, dimensions: startDimensions });
   }
@@ -73,7 +74,7 @@ function App() {
   // to history
   const updateMatrixState = (newMatrix) => {
     historyContext.addState({ matrix, dimensions });
-    setMatrix(newMatrix)
+    setMatrix(newMatrix);
   }
 
   // converts the matrix, which is currently in 1D array form, to

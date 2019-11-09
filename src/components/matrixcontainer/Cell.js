@@ -8,14 +8,14 @@ function Cell(props) {
         // the index of the item mod |columns| is |columns|-1 
         const cellColour = (i % props.cols) === props.cols - 1 ? '#cecece' : 'white';
         
-        return { backgroundColor: cellColour }
+        return { backgroundColor: cellColour };
     }
 
     //update the matrix state
     const updateState = (val) => {
         let matrixCopy = props.matrix.slice(0);
         matrixCopy[props.index] = val;
-        props.setMatrix(matrixCopy)
+        props.setMatrix(matrixCopy);
     }
 
     const updateVal = (val) => {
@@ -26,7 +26,7 @@ function Cell(props) {
             // return on invalid input 
             return;
         } else {
-            updateState(val)
+            updateState(val);
         }
     }
 

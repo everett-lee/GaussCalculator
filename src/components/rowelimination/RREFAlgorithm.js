@@ -10,8 +10,8 @@ function convertMatrix(matrix) {
 
     let lead = 0; // pivot entry
 
-    const rowCount = matrix.length
-    const colCount = matrix[0].length
+    const rowCount = matrix.length;
+    const colCount = matrix[0].length;
 
     for (let r = 0; r < rowCount; r++) {
         // lead exceeds bounds of nested array

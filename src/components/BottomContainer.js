@@ -11,7 +11,7 @@ function BottomContainer(props) {
         setMatrix={props.setMatrix} />  
         <Button name={'↺'} className={'undoButton'} f={props.undoLast}
                 testId={"undoButton"} />
-        <Button name={'Reduced echeleon form'} className={'echeleonButton'}/>
+        <Button name={'Convert to row canonical form'} className={'echeleonButton'}/>
       </div>
     );
 }

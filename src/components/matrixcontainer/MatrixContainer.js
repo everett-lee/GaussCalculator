@@ -4,16 +4,15 @@ import SwapButton from '../controls/SwapButton';
 import doSwap from'../rowoperations/SwapOperation';
 
 /**
- * Contains the matrix and side buttons and contains 
- * logic for the swap rows operation.
+ * Renders the matrix and side buttons
  */
 function MatrixContainer(props) {
     
-    // call the doSwap operation to swap two selected
+    // call the swap row operation to swap two selected
     // rows
     const callDoSwap = (i) => {
         doSwap(i, props.swapPair, props.setSwapPair, 
-            props.arrayToMatrix, props.setMatrix)
+            props.arrayToMatrix, props.setMatrix);
     }
 
     const renderSwapButtons = () => {

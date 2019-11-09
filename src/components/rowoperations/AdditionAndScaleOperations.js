@@ -4,13 +4,13 @@
 
 // covert all cell values to numbers
 const convertToNumeric = (array) => {
-    const out = []
+    const out = [];
 
     // convert to base 10 decimal
     array.forEach(row => out.push(row.map(el => {
         // convert single dots and dashes (allowed by regex) to 0
         el === '.' || el === '-' ? el = 0 : el = el;
-        return parseFloat(el, 10)
+        return parseFloat(el, 10);
     }
     )));
     return out;
@@ -105,4 +105,4 @@ const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix) => {
     setMatrix(flatMatrix);
 }
 
-export {performRowAddition, performRowScale}
+export {performRowAddition, performRowScale};

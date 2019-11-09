@@ -65,7 +65,7 @@ function App() {
   // an array of arrays
   const arrayToMatrix = () => {
     const out = [];
-    const cols = dimensions.m;
+    const cols = dimensions.n;
     // iterate in chunks of the column size
     for (let i = 0; i < matrix.length; i = i + cols) {
       out.push(matrix.slice(i, i + cols));

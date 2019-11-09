@@ -6,8 +6,8 @@ import MatrixContainer from './matrixcontainer/MatrixContainer';
 import TopRow from './toprow/TopRow';
 
 function App() {
-  const startDimensions = { m: 5, n: 5 };
-  const zeroMatrix = new Array(25).fill(0);
+  const startDimensions = { m: 4, n: 5 };
+  const zeroMatrix = new Array(startDimensions.m * startDimensions.n).fill(0);
 
   // create an array with random values as starting state
   const makeRandomArray = () => {

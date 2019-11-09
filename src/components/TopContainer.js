@@ -11,10 +11,10 @@ function TopContainer(props) {
   return (
     <div className='topContainer'>
       <TextInput className='topInput' val={props.m} inputTest={topInputTest}
-        f={props.setM} placeholder={'m'} number={true} />
+        f={props.setM} placeholder={'m'} number={true} testId={"mInput"} />
       <div className='topDiv'>X</div>
       <TextInput className='topInput' val={props.n} inputTest={topInputTest}
-        f={props.setN} placeholder={'n'} number={true} />
+        f={props.setN} placeholder={'n'} number={true} testId={"nInput"} />
       <Button name='Make matrix' f={props.makeArray} className={'topButton'} />
       <Button name='Reset' f={props.resetMatrix} className={'topButton'} />
     </div>

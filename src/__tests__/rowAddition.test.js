@@ -60,9 +60,16 @@ test('The addition of two rows results in the correct output', () => {
 })
 
 test('The subtraction of a row results in the correct output', () => {
-    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
+    const { queryByTestId, getByText } = render(<HistoryProvider><App /></HistoryProvider>,);
 
-    let input = queryByTestId('R1ValueTop');
+    // create a 5x5 matrix
+    let input = queryByTestId(/minput/i)
+    fireEvent.change(input, { target: { value: 5 } })
+    input = queryByTestId(/ninput/i)
+    fireEvent.change(input, { target: { value: 5 } })
+    fireEvent.click(getByText(/make matrix/i));
+
+    input = queryByTestId('R1ValueTop');
     // second row selector
     fireEvent.change(input, { target: { value: '3' } })
     input = queryByTestId('R2ValueTop');
@@ -111,13 +118,16 @@ test('The subtraction of a row results in the correct output', () => {
 })
 
 test('The addition of a row with non numeric values works as expected', () => {
-    const { queryByTestId, queryByText } = render(<HistoryProvider><App /></HistoryProvider>,);
+    const { queryByTestId, getByText } = render(<HistoryProvider><App /></HistoryProvider>,);
+    
+    // create a 5x5 matrix
+    let input = queryByTestId(/minput/i)
+    fireEvent.change(input, { target: { value: 5 } })
+    input = queryByTestId(/ninput/i)
+    fireEvent.change(input, { target: { value: 5 } })
+    fireEvent.click(getByText(/make matrix/i));
 
-    // reset matrix to zero matrix
-    fireEvent.click(queryByText(/reset/i));
-
-
-    let input = queryByTestId('R1ValueTop');
+    input = queryByTestId('R1ValueTop');
     // second row selector
     fireEvent.change(input, { target: { value: '3' } })
     input = queryByTestId('R2ValueTop');

@@ -70,12 +70,12 @@ test('A 3x4 matrix is created and reverted to original 5x5', () => {
 
     fireEvent.click(queryByTestId(/undoButton/i));
 
-    // there are 25 elements rendered
-    element = queryByTestId('24')
+    // there are 20 elements rendered
+    element = queryByTestId('19')
     expect(element).not.toBeNull();
 
     // and no more 
-    element = queryByTestId('25')
+    element = queryByTestId('20')
     expect(element).toBeNull()
 })
 
@@ -105,12 +105,12 @@ test('Repeated undo actions leave matrix in original state', () => {
         fireEvent.click(queryByTestId(/undoButton/i));
     }
 
-    // there are 25 elements rendered
-    element = queryByTestId('24')
+    // there are 20 elements rendered
+    element = queryByTestId('19')
     expect(element).not.toBeNull();
 
     // and no more 
-    element = queryByTestId('25')
+    element = queryByTestId('20')
     expect(element).toBeNull()
 })
 

@@ -6,8 +6,8 @@ import React, { useState, createContext } from 'react';
 const HistoryContext = createContext();
 
 function HistoryProvider({ children }) {
-    const zeroMatrix = new Array(25).fill(0);
-    const startDimensions = { n: 5, m: 5 };
+    const startDimensions = { n: 4, m: 5 };
+    const zeroMatrix = new Array(startDimensions.m * startDimensions.n).fill(0);
     const startState = { matrix: zeroMatrix, dimensions: startDimensions }
 
     const [history, setHistory] = useState([startState]);

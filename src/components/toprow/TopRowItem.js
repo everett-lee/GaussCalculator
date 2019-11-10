@@ -1,8 +1,8 @@
 import React from 'react';
 
-function TopRowItem(props) {
+function TopRowItem({ heading }) {
     return (
-        <div className='topRowItem'>{props.heading}</div>
+        <div className='topRowItem'>{heading}</div>
     );
 }
 

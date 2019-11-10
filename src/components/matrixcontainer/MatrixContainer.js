@@ -7,8 +7,7 @@ import doSwap from '../rowoperations/SwapOperation';
  * Renders the matrix and side buttons
  */
 function MatrixContainer({ dimensions, swapPair, setSwapPair, matrix, setMatrix,
-    arrayToMatrix, dimmedCells, dimRows }) {
-    const rows = dimensions.m;
+    arrayToMatrix, dimmedCells, dimRows }) {;
     const cols = dimensions.n;
 
     // call the swap row operation to swap two selected

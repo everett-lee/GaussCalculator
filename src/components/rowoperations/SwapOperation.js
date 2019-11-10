@@ -10,8 +10,8 @@ const doSwap = (i, swapPair, setSwapPair, arrayToMatrix, setMatrix, dimRows) => 
         let first = swapPair[0];
         let second = swapPair[1];
 
-        dimRows([first,second])
-        
+        dimRows([first, second])
+
         let arr = arrayToMatrix();
 
         // the row being overwritten

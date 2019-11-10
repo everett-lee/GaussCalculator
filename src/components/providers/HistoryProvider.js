@@ -20,8 +20,8 @@ function HistoryProvider({ children }) {
         }
 
         const lastState = history.slice(0).pop();
-        setHistory(history.slice(0, history.length-1));
- 
+        setHistory(history.slice(0, history.length - 1));
+
         return lastState;
     }
 

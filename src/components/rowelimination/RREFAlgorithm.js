@@ -6,7 +6,7 @@ import sleep from '../utils/Sleep';
  * pseudocode from https://rosettacode.org/wiki/Reduced_row_echelon_form
  */
 
-const nullFunction = () => {return}
+const nullFunction = () => { return }
 async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
     matrix = copyMatrix(matrix); // create copy
 
@@ -35,7 +35,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
         matrix = swapRows(i, r, matrix);
 
         await dimAnimation(dimRows, [i, r], 500);
-        setMatrix(matrix.flatMap( el => el));
+        setMatrix(matrix.flatMap(el => el));
 
         let leadingVal = matrix[r][lead];
 
@@ -44,7 +44,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
             matrix[r] = matrix[r].map(el => el / leadingVal);
 
             await dimAnimation(dimRows, [r], 500);
-            setMatrix(matrix.flatMap( el => el));
+            setMatrix(matrix.flatMap(el => el));
         }
 
         for (let i = 0; i < rowCount; i++) {
@@ -57,10 +57,10 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
                 for (let j = 0; j < colCount; j++) {
                     rowI[j] -= scaledR[j];
 
-                    setMatrix(matrix.flatMap( el => el));
+                    setMatrix(matrix.flatMap(el => el));
                 }
-                
-     
+
+
             }
             await dimAnimation(dimRows, [i], 250);
         }
@@ -81,7 +81,7 @@ function removeNegativeZero(matrix) {
 
     matrix.forEach(row => out
         .push(row
-            .map(el => el === -0? 0: el)))
+            .map(el => el === -0 ? 0 : el)))
 
     return out;
 }

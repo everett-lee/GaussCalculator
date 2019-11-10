@@ -1,11 +1,11 @@
 import React from 'react';
 
-function Button(props) {
-    return ( 
-    <button className={props.className} onClick={(e) => props.f()} 
-            data-testid={props.testId} >
-        {props.name}
-    </button> );
+function Button({ className, name, testId, f }) {
+    return (
+        <button className={className} onClick={(e) => f()}
+            data-testid={testId} >
+            {name}
+        </button>);
 }
 
 export default Button;

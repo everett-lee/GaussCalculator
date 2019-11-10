@@ -3,24 +3,26 @@ import React from 'react';
 /**
  * A cell in the matrix. Is used to input and display values
  */
-function Cell(props) {
+function Cell({ cols, index, opacity, matrix, setMatrix }) {
     const getColour = (i) => {
         // the index of the item mod |columns| is |columns|-1 
-        const cellColour = (i % props.cols) === props.cols - 1 ? '#cecece' : 'white';
-        
+        const cellColour = (i % cols) === cols - 1 ? '#cecece' : 'white';
+
         return cellColour;
     }
 
-    const style = { opacity: props.opacity, 
-                    transitionProperty: "opacity",
-                    transitionDuration: "0.2s",
-                    backgroundColor: getColour(props.index)};
+    const style = {
+        opacity: opacity,
+        transitionProperty: "opacity",
+        transitionDuration: "0.2s",
+        backgroundColor: getColour(index)
+    };
 
     //update the matrix state
     const updateState = (val) => {
-        let matrixCopy = props.matrix.slice(0);
-        matrixCopy[props.index] = val;
-        props.setMatrix(matrixCopy);
+        let matrixCopy = matrix.slice(0);
+        matrixCopy[index] = val;
+        setMatrix(matrixCopy);
     }
 
     const updateVal = (val) => {
@@ -38,10 +40,10 @@ function Cell(props) {
     return (
         <div className='cell' >
             <input type='text' className='numInput'
-                value={props.matrix[props.index]}
+                value={matrix[index]}
                 style={style}
                 onChange={(e) => updateVal(e.target.value)}
-                data-testid={props.index} />
+                data-testid={index} />
         </div>
     );
 }

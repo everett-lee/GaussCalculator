@@ -8,8 +8,13 @@ function Cell(props) {
         // the index of the item mod |columns| is |columns|-1 
         const cellColour = (i % props.cols) === props.cols - 1 ? '#cecece' : 'white';
         
-        return { backgroundColor: cellColour };
+        return cellColour;
     }
+
+    const style = { opacity: props.opacity, 
+                    transitionProperty: "opacity",
+                    transitionDuration: "0.2s",
+                    backgroundColor: getColour(props.index)};
 
     //update the matrix state
     const updateState = (val) => {
@@ -31,10 +36,10 @@ function Cell(props) {
     }
 
     return (
-        <div className='cell'>
+        <div className='cell' >
             <input type='text' className='numInput'
                 value={props.matrix[props.index]}
-                style={getColour(props.index)}
+                style={style}
                 onChange={(e) => updateVal(e.target.value)}
                 data-testid={props.index} />
         </div>

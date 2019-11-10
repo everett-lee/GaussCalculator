@@ -1,5 +1,5 @@
 // swap two rows in the matrix
-const doSwap = (i, swapPair, setSwapPair, arrayToMatrix, setMatrix) => {
+const doSwap = (i, swapPair, setSwapPair, arrayToMatrix, setMatrix, dimRows) => {
     let pair = swapPair;
     pair.push(i);
     setSwapPair(pair.slice(0));
@@ -10,6 +10,8 @@ const doSwap = (i, swapPair, setSwapPair, arrayToMatrix, setMatrix) => {
         let first = swapPair[0];
         let second = swapPair[1];
 
+        dimRows([first,second])
+        
         let arr = arrayToMatrix();
 
         // the row being overwritten

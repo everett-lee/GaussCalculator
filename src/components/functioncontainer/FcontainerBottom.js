@@ -6,7 +6,7 @@ import { performRowScale } from '../rowoperations/AdditionAndScaleOperations';
 /**
  *  renders control for row scale operation
  */
-function FcontainerBottom(props) {
+function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
     const [R1Scale, setR1Scale] = useState(1); // amount to scale row by
     const [R1, setR1] = useState(''); // row used in operation
     const [operation, setOperation] = useState('🞄') // multiply or divide
@@ -33,7 +33,7 @@ function FcontainerBottom(props) {
 
     // call perform row scale function from row operations module
     const callperformRowScale = () => {
-        performRowScale(R1, R1Scale, operation, props.getMatrix, props.setMatrix);
+        performRowScale(R1, R1Scale, operation, getMatrix, setMatrix, dimRows);
     }
 
     return (
@@ -41,7 +41,7 @@ function FcontainerBottom(props) {
             <div className="fDivLong"> </div>
             <div className="fDiv"> Row </div>
             <TextInput className='fInput' f={setR1} val={R1}
-                inputTest={props.rowRangeTest} number={true}
+                inputTest={rowRangeTest} number={true}
                 testId={'R1ValueBottom'}
                 placeholder={'Rᵢ'} />
             <div className="opButtonContainer">

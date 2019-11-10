@@ -35,7 +35,7 @@ const rowRangeTest = (row, m) => {
 }
 
 // adds a scaled R1 to R2 and updates matrix state
-const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix) => {
+const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => {
     let m = getMatrix().length;
 
     // invalid rows selected
@@ -67,12 +67,13 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix) => {
 
     // flatten result and update parent class 
     const flatMatrix = matrix.flatMap(el => el);
+    dimRows([R1]);
     setMatrix(flatMatrix);
 }
 
 
 // multiplies/divides R by some value
-const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix) => {
+const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) => {
     let R1index = R1 - 1; // rows are zero-indexed in the code
     if (R1index < 0) {
         return;
@@ -102,6 +103,8 @@ const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix) => {
 
     // flatten result and update parent class 
     const flatMatrix = matrix.flatMap(el => el);
+
+    dimRows([R1index]);
     setMatrix(flatMatrix);
 }
 

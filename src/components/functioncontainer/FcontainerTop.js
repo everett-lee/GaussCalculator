@@ -6,7 +6,7 @@ import { performRowAddition } from '../rowoperations/AdditionAndScaleOperations'
 /**
  * Stores and renders controls for row addition operation
  */
-function FcontainerTop(props) {
+function FcontainerTop( { rowRangeTest, getMatrix, setMatrix, dimRows }) {
     const [R1Scalar, setR1Scalar] = useState(1); // amount to scale row by
     const [R1, setR1] = useState(''); // first row used in operation
     const [R2, setR2] = useState(''); // second row used in operation
@@ -24,7 +24,7 @@ function FcontainerTop(props) {
 
     const inputRowTest = (row) => {
         // selected row must be less than or equal to N
-        const flagOne = props.rowRangeTest(row);
+        const flagOne = rowRangeTest(row);
 
         row = Number(row);
         // cannot perform a row action on itself
@@ -34,7 +34,7 @@ function FcontainerTop(props) {
 
     // call the perform row addition function in the row operations module
     const callperformRowAddition = () => {
-        performRowAddition(R1, R2, R1Scalar, props.getMatrix, props.setMatrix)
+        performRowAddition(R1, R2, R1Scalar, getMatrix, setMatrix, dimRows)
     }
 
     return (

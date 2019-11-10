@@ -4,6 +4,7 @@ import BottomContainer from './BottomContainer';
 import { HistoryContext } from './providers/HistoryProvider';
 import MatrixContainer from './matrixcontainer/MatrixContainer';
 import TopRow from './toprow/TopRow';
+import sleep from './utils/Sleep';
 
 function App() {
   const startDimensions = { m: 4, n: 5 };
@@ -16,9 +17,9 @@ function App() {
 
     const size = startDimensions.m * startDimensions.n;
     const arr = new Array(size).fill(0);
-    
+
     // map each 0 element to a random member in range min to max
-    return arr.map( el => {
+    return arr.map(el => {
       return Math.floor(Math.random() * (max - min + 1) + min);
     });
   }
@@ -30,6 +31,7 @@ function App() {
   const [n, setN] = useState('');
   const [matrix, setMatrix] = useState(makeRandomArray()); // the matrix represented as a 1D array
   const [swapPair, setSwapPair] = useState([]); // two rows to be swapped
+  const [dimmedCells, setDimmedCells] = useState([]); // cells dimmed during transition animations
 
   // create an array of the required dimensions
   const makeArray = () => {
@@ -88,19 +90,44 @@ function App() {
     }
     return out;
   }
+  
+  // triggers transition animation to signify row operation. Takes an array of 
+  // row indices as its sole argument
+  const dimRows = (rows) => {
+    const cols = dimensions.n;
+    const out = [];
+
+    rows.forEach(row => {
+      let startIndex = row * cols;
+      out.push(startIndex);
+  
+      // add index of ther cells in this row
+      for (let i = startIndex + 1; i < startIndex + cols; i++) {
+          out.push(i);
+      }
+    });
+
+    // add these to array of dimmed cells
+    setDimmedCells(out);
+    sleep(250).then(() => setDimmedCells([]));
+  }
 
   return (
     <div className='mainContainer'>
       <TopContainer setM={setM} setN={setN} makeArray={makeArray}
         m={m} n={n} resetMatrix={resetMatrix} />
-      <TopRow cols={dimensions.n}/>
+      <TopRow cols={dimensions.n} />
       <MatrixContainer dimensions={dimensions} swapPair={swapPair}
-                       setSwapPair={setSwapPair} arrayToMatrix={arrayToMatrix}
-                       matrix={matrix} setMatrix={updateMatrixState} />
+        setSwapPair={setSwapPair} arrayToMatrix={arrayToMatrix}
+        matrix={matrix} setMatrix={updateMatrixState}
+        dimmedCells={dimmedCells}
+        dimRows={dimRows} />
       <BottomContainer rows={dimensions.m}
         getMatrix={arrayToMatrix}
         setMatrix={updateMatrixState}
-        undoLast={undoLast} />
+        undoLast={undoLast}
+        setDimmedCells={setDimmedCells} 
+        dimRows={dimRows} />
     </div>
   );
 }

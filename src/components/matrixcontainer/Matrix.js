@@ -16,8 +16,11 @@ function Matrix(props) {
                 let i = count;
                 count++;
 
+                let opacity = props.dimmedCells.includes(i)? 0: 1;
+
                 return <Cell index={i} key={i} matrix={props.matrix} 
-                        setMatrix={props.setMatrix} cols={props.cols} />
+                        setMatrix={props.setMatrix} cols={props.cols}
+                        opacity={opacity} />
             })
         );
     };

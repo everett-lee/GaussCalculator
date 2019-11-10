@@ -5,9 +5,10 @@ import convertMatrix from './rowelimination/RREFAlgorithm';
 
 function BottomContainer( { rows, getMatrix, setMatrix, undoLast, dimRows}) {
     // convert the matrix to reduced row echelon form
-    const callConvertMatrix = () => {
+    const callConvertMatrix = async () => {
       // get the converted matrix, which must be flattened
-      const convertedMatrix = convertMatrix(getMatrix());
+      const convertedMatrix = await convertMatrix(getMatrix(), dimRows, setMatrix);
+      
       setMatrix(convertedMatrix.flatMap(el => el));
     }
 

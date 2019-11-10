@@ -67,7 +67,7 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
 
     // flatten result and update parent class 
     const flatMatrix = matrix.flatMap(el => el);
-    dimRows([R1]);
+    dimRows([R2index]);
     setMatrix(flatMatrix);
 }
 

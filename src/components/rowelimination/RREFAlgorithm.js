@@ -1,11 +1,12 @@
 import copyMatrix from '../utils/CopyMatrix';
+import sleep from '../utils/Sleep';
 
 /**
  * Algorithm to convert input matrix to reduced row echelon form. Based on
  * pseudocode from https://rosettacode.org/wiki/Reduced_row_echelon_form
  */
 
-function convertMatrix(matrix) {
+async function convertMatrix(matrix, dimRows, setMatrix) {
     matrix = copyMatrix(matrix); // create copy
 
     let lead = 0; // pivot entry
@@ -32,13 +33,18 @@ function convertMatrix(matrix) {
         }
         matrix = swapRows(i, r, matrix);
 
+        await dimAnimation(dimRows, [i, r], 400);
+        setMatrix(matrix.flatMap( el => el));
+
         let leadingVal = matrix[r][lead];
 
         if (leadingVal !== 0) {
             // divide row r by this value
             matrix[r] = matrix[r].map(el => el / leadingVal);
-        }
 
+            await dimAnimation(dimRows, [r], 400);
+            setMatrix(matrix.flatMap( el => el));
+        }
 
         for (let i = 0; i < rowCount; i++) {
             leadingVal = matrix[i][lead];
@@ -49,13 +55,24 @@ function convertMatrix(matrix) {
                 // subtract the scaled row r from row i 
                 for (let j = 0; j < colCount; j++) {
                     rowI[j] -= scaledR[j];
+
+                    setMatrix(matrix.flatMap( el => el));
                 }
+                
+                await dimAnimation(dimRows, [i], 400);
             }
         }
         lead++;
     }
     return removeNegativeZero(matrix);
 }
+
+// performs dimming animations
+async function dimAnimation(dimRows, rows, time) {
+    dimRows(rows);
+    await sleep(time);
+}
+
 
 function removeNegativeZero(matrix) {
     let out = []

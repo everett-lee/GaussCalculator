@@ -93,7 +93,7 @@ function App() {
   
   // triggers transition animation to signify row operation. Takes an array of 
   // row indices as its sole argument
-  const dimRows = (rows) => {
+  const dimRows = async (rows) => {
     const cols = dimensions.n;
     const out = [];
 
@@ -109,7 +109,8 @@ function App() {
 
     // add these to array of dimmed cells
     setDimmedCells(out);
-    sleep(250).then(() => setDimmedCells([]));
+    await sleep(250);
+    setDimmedCells([]);
   }
 
   return (

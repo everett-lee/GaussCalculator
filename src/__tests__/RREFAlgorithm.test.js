@@ -12,6 +12,14 @@ let expected3 = [[1, 0, 0, 2], [0, 1, 0, 3], [0, 0, 1, -1]];
 let expected4 = [[1, 0, 0, 0, 5], [0, 1, 0, 0, -1], [0, 0, 1, 0, 2], [0, 0, 0, 1, 1]];
 let expected5 = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
 
+const sleep = (time) => {
+    return new Promise((resolve) => {});
+}
+
+const mockDimRows = (rows) => {
+    sleep(250).then(() => { });
+}
+
 let compareArrays = (arr1, arr2) => {
     let m = arr1.length;
     let n = arr1[0].length;
@@ -29,36 +37,38 @@ let compareArrays = (arr1, arr2) => {
 }
 
 test('The first array is in reduced row echelon form', () => {
-    let res = convertMatrix(matrix1);
-    let flag = compareArrays(res, expected1);
-
-    expect(flag).toBe(true);
+    convertMatrix(matrix1, mockDimRows).then(res => {
+        let flag = compareArrays(res, expected1);
+        expect(flag).toBe(true);
+    });
 });
 
-test('The second array is in reduced row echelon form', () => {
-    let res = convertMatrix(matrix2);
-    let flag = compareArrays(res, expected2);
-
-    expect(flag).toBe(true);
+test('The second array is in reduced row echelon form', async () => {
+    convertMatrix(matrix2, mockDimRows).then(res => {
+        let flag = compareArrays(res, expected2);
+        expect(flag).toBe(true);
+    });
 });
 
-test('The third array is in reduced row echelon form', () => {
-    let res = convertMatrix(matrix3);
-    let flag = compareArrays(res, expected3);
-
-    expect(flag).toBe(true);
+test('The third array is in reduced row echelon form', async () => {
+    convertMatrix(matrix3, mockDimRows).then(res => {
+        let flag = compareArrays(res, expected3);
+        expect(flag).toBe(true);
+    });
 });
 
-test('The fourth array is in reduced row echelon form', () => {
-    let res = convertMatrix(matrix4);
-    let flag = compareArrays(res, expected4);
-
-    expect(flag).toBe(true);
+test('The third array is in reduced row echelon form', async () => {
+    convertMatrix(matrix4, mockDimRows).then(res => {
+        let flag = compareArrays(res, expected4);
+        expect(flag).toBe(true);
+    });
 });
 
-test('The zero matrix is unchanged', () => {
-    let res = convertMatrix(matrix5);
-    let flag = compareArrays(res, expected5);
-
-    expect(flag).toBe(true);
+test('The fourth array is in reduced row echelon form', async () => {
+    convertMatrix(matrix5, mockDimRows).then(res => {
+        let flag = compareArrays(res, expected5);
+        expect(flag).toBe(true);
+    });
 });
+
+

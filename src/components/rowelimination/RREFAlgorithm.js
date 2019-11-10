@@ -6,7 +6,8 @@ import sleep from '../utils/Sleep';
  * pseudocode from https://rosettacode.org/wiki/Reduced_row_echelon_form
  */
 
-async function convertMatrix(matrix, dimRows, setMatrix) {
+const nullFunction = () => {return}
+async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
     matrix = copyMatrix(matrix); // create copy
 
     let lead = 0; // pivot entry
@@ -33,7 +34,7 @@ async function convertMatrix(matrix, dimRows, setMatrix) {
         }
         matrix = swapRows(i, r, matrix);
 
-        await dimAnimation(dimRows, [i, r], 400);
+        await dimAnimation(dimRows, [i, r], 500);
         setMatrix(matrix.flatMap( el => el));
 
         let leadingVal = matrix[r][lead];
@@ -42,7 +43,7 @@ async function convertMatrix(matrix, dimRows, setMatrix) {
             // divide row r by this value
             matrix[r] = matrix[r].map(el => el / leadingVal);
 
-            await dimAnimation(dimRows, [r], 400);
+            await dimAnimation(dimRows, [r], 500);
             setMatrix(matrix.flatMap( el => el));
         }
 
@@ -59,8 +60,9 @@ async function convertMatrix(matrix, dimRows, setMatrix) {
                     setMatrix(matrix.flatMap( el => el));
                 }
                 
-                await dimAnimation(dimRows, [i], 400);
+     
             }
+            await dimAnimation(dimRows, [i], 250);
         }
         lead++;
     }

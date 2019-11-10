@@ -9,7 +9,7 @@ function App() {
   const startDimensions = { m: 4, n: 5 };
   const zeroMatrix = new Array(startDimensions.m * startDimensions.n).fill(0);
 
-  // create an array with random values as starting state
+  // create an array with random values as start state
   const makeRandomArray = () => {
     const min = -10;
     const max = 10;
@@ -17,9 +17,9 @@ function App() {
     const size = startDimensions.m * startDimensions.n;
     const arr = new Array(size).fill(0);
     
-    // map each 0 element to a random member in range min-max
+    // map each 0 element to a random member in range min to max
     return arr.map( el => {
-      return Math.floor(Math.random() * (max - min) + min);
+      return Math.floor(Math.random() * (max - min + 1) + min);
     });
   }
 

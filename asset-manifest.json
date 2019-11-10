@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.js": "/everett-lee/GaussCalculator/static/js/main.c567c192.chunk.js",
+    "main.js.map": "/everett-lee/GaussCalculator/static/js/main.c567c192.chunk.js.map",
+    "runtime-main.js": "/everett-lee/GaussCalculator/static/js/runtime-main.58623d99.js",
+    "runtime-main.js.map": "/everett-lee/GaussCalculator/static/js/runtime-main.58623d99.js.map",
+    "static/js/2.4736c06a.chunk.js": "/everett-lee/GaussCalculator/static/js/2.4736c06a.chunk.js",
+    "static/js/2.4736c06a.chunk.js.map": "/everett-lee/GaussCalculator/static/js/2.4736c06a.chunk.js.map",
+    "index.html": "/everett-lee/GaussCalculator/index.html",
+    "precache-manifest.7c5e42030f71de1456c98892217113c8.js": "/everett-lee/GaussCalculator/precache-manifest.7c5e42030f71de1456c98892217113c8.js",
+    "service-worker.js": "/everett-lee/GaussCalculator/service-worker.js"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.58623d99.js",
+    "static/js/2.4736c06a.chunk.js",
+    "static/js/main.c567c192.chunk.js"
+  ]
+}

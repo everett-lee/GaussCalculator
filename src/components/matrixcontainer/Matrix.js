@@ -10,15 +10,12 @@ function Matrix({ cols, dimmedCells, matrix, setMatrix }) {
     // render each cell of the matrix using dimensions 
     // passed in props
     const renderCells = (arr) => {
-        let count = 0;
         return (
-            arr.map(el => {
-                let i = count;
-                count++;
+            arr.map( (el, index)=> {
 
-                let opacity = dimmedCells.includes(i)? 0: 1;
+                let opacity = dimmedCells.includes(index)? 0: 1;
 
-                return <Cell index={i} key={i} matrix={matrix} 
+                return <Cell index={index} key={index} matrix={matrix} 
                         setMatrix={setMatrix} cols={cols}
                         opacity={opacity} />
             })

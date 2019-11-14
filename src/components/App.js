@@ -90,7 +90,7 @@ function App() {
     }
     return out;
   }
-  
+
   // triggers transition animation to signify row operation. Takes an array of 
   // row indices as its sole argument
   const dimRows = async (rows) => {
@@ -100,10 +100,10 @@ function App() {
     rows.forEach(row => {
       let startIndex = row * cols;
       out.push(startIndex);
-  
+
       // add index of ther cells in this row
       for (let i = startIndex + 1; i < startIndex + cols; i++) {
-          out.push(i);
+        out.push(i);
       }
     });
 
@@ -115,19 +115,24 @@ function App() {
 
   return (
     <div className='mainContainer'>
-      <TopContainer setM={setM} setN={setN} makeArray={makeArray}
-        m={m} n={n} resetMatrix={resetMatrix} />
+      <TopContainer setM={setM} setN={setN}
+        m={m} n={n}
+        makeArray={makeArray}
+        resetMatrix={resetMatrix} />
       <TopRow cols={dimensions.n} />
-      <MatrixContainer dimensions={dimensions} swapPair={swapPair}
-        setSwapPair={setSwapPair} arrayToMatrix={arrayToMatrix}
-        matrix={matrix} setMatrix={updateMatrixState}
+      <MatrixContainer dimensions={dimensions}
+        swapPair={swapPair}
+        setSwapPair={setSwapPair}
+        arrayToMatrix={arrayToMatrix}
+        matrix={matrix}
+        setMatrix={updateMatrixState}
         dimmedCells={dimmedCells}
         dimRows={dimRows} />
       <BottomContainer rows={dimensions.m}
         getMatrix={arrayToMatrix}
         setMatrix={updateMatrixState}
         undoLast={undoLast}
-        setDimmedCells={setDimmedCells} 
+        setDimmedCells={setDimmedCells}
         dimRows={dimRows} />
     </div>
   );

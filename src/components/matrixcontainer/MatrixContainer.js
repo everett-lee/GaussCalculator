@@ -18,21 +18,18 @@ function MatrixContainer({ dimensions, swapPair, setSwapPair, matrix, setMatrix,
     }
 
     const renderSwapButtons = () => {
-        let count = 0;
         // there should be as many buttons as rows
         const arr = new Array(dimensions.m).fill(0);
 
-        return arr.map(el => {
-            let i = count;
-            count++;
+        return arr.map((el, index) => {;
 
             let clicked = false;
             // if this button has been clicked
-            if (i === swapPair[0] || i === swapPair[1]) {
+            if (index === swapPair[0] || index === swapPair[1]) {
                 clicked = true;
             }
 
-            return <SwapButton i={i} key={count} name={`⟺ Row ${count}`}
+            return <SwapButton i={index} key={index} name={`⟺ Row ${index + 1}`}
                 f={callDoSwap} clicked={clicked} />
         })
     }

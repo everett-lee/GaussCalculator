@@ -35,7 +35,7 @@ function App() {
 
   // create an array of the required dimensions
   const makeArray = () => {
-    resetMatrix()
+    resetMatrix();
     if (m === '' || n === '') {
       return;
     }

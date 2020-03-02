@@ -1,15 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e202972c1aabaa41d40b23bc579ffefd",
+    "revision": "d6ebc3b334e6526660b8e6c40f7b88b4",
     "url": "/GaussCalculator/index.html"
+  },
+  {
+    "revision": "049a4d857870d6c581bc",
+    "url": "/GaussCalculator/static/css/main.3a8871b9.chunk.css"
   },
   {
     "revision": "00840bb49db1f3e4a315",
     "url": "/GaussCalculator/static/js/2.4736c06a.chunk.js"
   },
   {
-    "revision": "ec361b205e0b0182c015",
-    "url": "/GaussCalculator/static/js/main.c567c192.chunk.js"
+    "revision": "049a4d857870d6c581bc",
+    "url": "/GaussCalculator/static/js/main.f59f9174.chunk.js"
   },
   {
     "revision": "a6bfb0d4c638202b4a41",

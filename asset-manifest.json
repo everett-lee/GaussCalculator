@@ -1,18 +1,21 @@
 {
   "files": {
-    "main.js": "/GaussCalculator/static/js/main.c567c192.chunk.js",
-    "main.js.map": "/GaussCalculator/static/js/main.c567c192.chunk.js.map",
+    "main.css": "/GaussCalculator/static/css/main.3a8871b9.chunk.css",
+    "main.js": "/GaussCalculator/static/js/main.f59f9174.chunk.js",
+    "main.js.map": "/GaussCalculator/static/js/main.f59f9174.chunk.js.map",
     "runtime-main.js": "/GaussCalculator/static/js/runtime-main.386fccbd.js",
     "runtime-main.js.map": "/GaussCalculator/static/js/runtime-main.386fccbd.js.map",
     "static/js/2.4736c06a.chunk.js": "/GaussCalculator/static/js/2.4736c06a.chunk.js",
     "static/js/2.4736c06a.chunk.js.map": "/GaussCalculator/static/js/2.4736c06a.chunk.js.map",
     "index.html": "/GaussCalculator/index.html",
-    "precache-manifest.6a852fda0fb2883d4a61274a702f3434.js": "/GaussCalculator/precache-manifest.6a852fda0fb2883d4a61274a702f3434.js",
-    "service-worker.js": "/GaussCalculator/service-worker.js"
+    "precache-manifest.f1a7d96bf9eda3239c2b1d161179458b.js": "/GaussCalculator/precache-manifest.f1a7d96bf9eda3239c2b1d161179458b.js",
+    "service-worker.js": "/GaussCalculator/service-worker.js",
+    "static/css/main.3a8871b9.chunk.css.map": "/GaussCalculator/static/css/main.3a8871b9.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.386fccbd.js",
     "static/js/2.4736c06a.chunk.js",
-    "static/js/main.c567c192.chunk.js"
+    "static/css/main.3a8871b9.chunk.css",
+    "static/js/main.f59f9174.chunk.js"
   ]
 }

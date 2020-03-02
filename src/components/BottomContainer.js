@@ -4,6 +4,8 @@ import Button from './controls/Button';
 import convertMatrix from './rowelimination/RREFAlgorithm';
 
 function BottomContainer({ rows, getMatrix, setMatrix, undoLast, dimRows }) {
+  const rewindSymbol = '\u21BA';
+
   // convert the matrix to reduced row echelon form
   const callConvertMatrix = async () => {
     // get the converted matrix, which must be flattened
@@ -17,7 +19,7 @@ function BottomContainer({ rows, getMatrix, setMatrix, undoLast, dimRows }) {
       <FunctionContainer rows={rows} dimRows={dimRows}
         getMatrix={getMatrix}
         setMatrix={setMatrix} />
-      <Button name={'↺'} className={'undoButton'} f={undoLast}
+      <Button name={rewindSymbol} className={'undoButton'} f={undoLast}
         testId={"undoButton"} />
       <Button name={'Convert to row canonical form'} className={'echeleonButton'}
         f={callConvertMatrix} />

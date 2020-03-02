@@ -7,6 +7,7 @@ import { performRowAddition } from '../rowoperations/AdditionAndScaleOperations'
  * Stores and renders controls for row addition operation
  */
 function FcontainerTop( { rowRangeTest, getMatrix, setMatrix, dimRows }) {
+    const bigX = '\u2715'
     const [R1Scalar, setR1Scalar] = useState(1); // amount to scale row by
     const [R1, setR1] = useState(''); // first row used in operation
     const [R2, setR2] = useState(''); // second row used in operation
@@ -42,7 +43,7 @@ function FcontainerTop( { rowRangeTest, getMatrix, setMatrix, dimRows }) {
             <TextInput className='fInput' f={setR1Scalar} val={R1Scalar}
                 inputTest={inputDecimalTest} number={false}
                 testId={'scalarValueTop'} />
-            <div className='fDiv'> 🞄 Row </div>
+            <div className='fDiv'> {bigX} Row </div>
             <TextInput className='fInput' f={setR1} val={R1}
                 inputTest={inputRowTest} number={true}
                 testId={'R1ValueTop'} placeholder={'Rᵢ'} />
@@ -52,7 +53,7 @@ function FcontainerTop( { rowRangeTest, getMatrix, setMatrix, dimRows }) {
                 inputTest={inputRowTest} number={true}
                 testId={'R2ValueTop'} placeholder={'Rⱼ'} />
             <Button className='fButton'
-                name={`${R1Scalar} 🞄 R${R1} + R${R2} → R${R2}`} f={callperformRowAddition}
+                name={`${R1Scalar} ${bigX} R${R1} + R${R2} → R${R2}`} f={callperformRowAddition}
                 testId={"rowAdditionButton"} />
         </div>
     )

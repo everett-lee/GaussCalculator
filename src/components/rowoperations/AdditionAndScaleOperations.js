@@ -23,7 +23,7 @@ const parseScalar = (scalar) => {
     let parsedScalar = parseFloat(scalar);
     // invalid scalar provided
     if (isNaN(parsedScalar)) {
-        console.error("Invalid scalar")
+        console.error('Invalid scalar');
         return false;
     }
     return parsedScalar;
@@ -40,7 +40,7 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
 
     // invalid rows selected
     if (rowRangeTest(R1, m) || rowRangeTest(R2, m)) {
-        console.error("Both rows must be selected")
+        console.error('Both rows must be selected')
         return;
     }
 
@@ -74,6 +74,8 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
 
 // multiplies/divides R by some value
 const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) => {
+    const multiplySymbol = '\u00B7';
+
     let R1index = R1 - 1; // rows are zero-indexed in the code
     if (R1index < 0) {
         return;
@@ -92,7 +94,7 @@ const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) 
 
     // scale R1 by the required amount
     const scaledR1 = matrix[R1index].map(el => {
-        if (operation === '🞄') {
+        if (operation === multiplySymbol) {
             return el *= parsedScalar;
         } else {
             return el /= parsedScalar;
@@ -108,4 +110,4 @@ const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) 
     setMatrix(flatMatrix);
 }
 
-export {performRowAddition, performRowScale};
+export { performRowAddition, performRowScale };

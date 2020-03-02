@@ -3,17 +3,20 @@ import TextInput from '../controls/TextInput';
 import Button from '../controls/Button';
 import { performRowScale } from '../rowoperations/AdditionAndScaleOperations';
 
+const multiplySymbol = '\u00B7';
+const divideSymbol = '\u00F7';
+
 /**
  *  renders control for row scale operation
  */
 function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
     const [R1Scale, setR1Scale] = useState(1); // amount to scale row by
     const [R1, setR1] = useState(''); // row used in operation
-    const [operation, setOperation] = useState('🞄') // multiply or divide
+    const [operation, setOperation] = useState(multiplySymbol) // multiply or divide
 
     // switch between division and multiplication
     const switchOperation = () => {
-        const op = operation === '🞄' ? '÷' : '🞄';
+        const op = operation === multiplySymbol ? divideSymbol : multiplySymbol;
         setOperation(op);
     }
 

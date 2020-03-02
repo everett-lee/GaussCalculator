@@ -6,6 +6,8 @@ import MatrixContainer from './matrixcontainer/MatrixContainer';
 import TopRow from './toprow/TopRow';
 import sleep from './utils/Sleep';
 
+import './style.css'
+
 function App() {
   const startDimensions = { m: 4, n: 5 };
   const zeroMatrix = new Array(startDimensions.m * startDimensions.n).fill(0);

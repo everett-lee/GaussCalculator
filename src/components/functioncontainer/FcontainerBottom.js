@@ -35,7 +35,7 @@ function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
     }
 
     // call perform row scale function from row operations module
-    const callperformRowScale = () => {
+    const callPerformRowScale = () => {
         performRowScale(R1, R1Scale, operation, getMatrix, setMatrix, dimRows);
     }
 
@@ -59,7 +59,7 @@ function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
             <Button className='fButton'
                 name={`R${R1} ${operation} ${R1Scale} → R${R1}`}
                 testId={"rowScaleButton"}
-                f={callperformRowScale} />
+                f={callPerformRowScale} />
         </div>
     );
 }

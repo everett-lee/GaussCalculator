@@ -7,7 +7,7 @@ import Cell from './Cell';
 function Matrix({ cols, dimmedCells, matrix, setMatrix }) {
     const gridStyle = { gridTemplateColumns: `repeat(${cols}, minmax(auto, 1fr))` };
 
-    // render each cell of the matrix using dimensions 
+    // Render each cell of the matrix using dimensions 
     // passed in props
     const renderCells = (arr) => {
         return (

@@ -77,8 +77,12 @@ function App() {
   // update matrix state and save
   // to history
   const updateMatrixState = (newMatrix) => {
+    const mapToNumberOrZero = (num) => Number.isNaN(num)? 0: Number(num);
+
+    const roundToFour = (num) => Math.round((mapToNumberOrZero(num) + Number.EPSILON) * 10000)/10000;
+
     historyContext.addState({ matrix, dimensions });
-    setMatrix(newMatrix);
+    setMatrix(newMatrix.map(num => roundToFour(num)));
   }
 
   // converts the matrix, which is currently in 1D array form, to
@@ -103,7 +107,7 @@ function App() {
       let startIndex = row * cols;
       out.push(startIndex);
 
-      // add index of ther cells in this row
+      // add index of the cells in this row
       for (let i = startIndex + 1; i < startIndex + cols; i++) {
         out.push(i);
       }

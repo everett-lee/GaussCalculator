@@ -6,7 +6,7 @@ import MatrixContainer from './matrixcontainer/MatrixContainer';
 import TopRow from './toprow/TopRow';
 import sleep from './utils/Sleep';
 
-import './style.css'
+import './style.css';
 
 function App() {
   const startDimensions = { m: 4, n: 5 };
@@ -24,7 +24,7 @@ function App() {
     return arr.map(el => {
       return Math.floor(Math.random() * (max - min + 1) + min);
     });
-  }
+  };
 
   const historyContext = useContext(HistoryContext); // stores history of past states
 
@@ -48,7 +48,7 @@ function App() {
     const matrix = new Array(size).fill(0);
     historyContext.resetHistory({ matrix: zeroMatrix, dimensions: startDimensions });
     updateMatrixState(matrix);
-  }
+  };
 
   // reset matrix to original dimensions and values
   const resetMatrix = () => {
@@ -58,7 +58,7 @@ function App() {
     setMatrix(zeroMatrix);
     setSwapPair([]);
     historyContext.resetHistory({ matrix: zeroMatrix, dimensions: startDimensions });
-  }
+  };
 
   // gets previous state from history
   // and update current state to reflect it
@@ -72,10 +72,9 @@ function App() {
       setMatrix(last.matrix);
       setDimensions(last.dimensions);
     }
-  }
+  };
 
-  // update matrix state and save
-  // to history
+  // update matrix state and add old matrix to memory
   const updateMatrixState = (newMatrix) => {
     const mapToNumberOrZero = (num) => Number.isNaN(num)? 0: Number(num);
 
@@ -83,7 +82,7 @@ function App() {
 
     historyContext.addState({ matrix, dimensions });
     setMatrix(newMatrix.map(num => roundToFour(num)));
-  }
+  };
 
   // converts the matrix, which is currently in 1D array form, to
   // 2D array
@@ -95,7 +94,7 @@ function App() {
       out.push(matrix.slice(i, i + cols));
     }
     return out;
-  }
+  };
 
   // triggers transition animation to signify row operation. Takes an array of 
   // row indices as its sole argument
@@ -117,7 +116,7 @@ function App() {
     setDimmedCells(out);
     await sleep(250);
     setDimmedCells([]);
-  }
+  };
 
   return (
     <div className='mainContainer'>

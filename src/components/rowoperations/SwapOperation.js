@@ -10,7 +10,7 @@ const doSwap = (i, swapPair, setSwapPair, arrayToMatrix, setMatrix, dimRows) => 
         let first = swapPair[0];
         let second = swapPair[1];
 
-        dimRows([first, second])
+        dimRows([first, second]);
 
         let arr = arrayToMatrix();
 
@@ -21,8 +21,8 @@ const doSwap = (i, swapPair, setSwapPair, arrayToMatrix, setMatrix, dimRows) => 
 
         let flattened = arr.flatMap(el => el);
         setMatrix(flattened);
-        setSwapPair([])
+        setSwapPair([]);
     }
-}
+};
 
 export default doSwap;

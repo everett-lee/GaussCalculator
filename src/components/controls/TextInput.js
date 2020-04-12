@@ -17,7 +17,7 @@ function TextInput({ className, val, inputTest, number, f, placeholder, testId }
                 f(val);
             }
         }
-    }
+    };
 
     return (
         <input className={className}

@@ -6,7 +6,7 @@ function TopContainer({ m, setM, n, setN, makeArray, resetMatrix }) {
   // test input for dimensions. m,n must be between 1 and 10.
   const topInputTest = (val) => {
     return (isNaN(val) || val < 1 || val > 10);
-  }
+  };
 
   return (
     <div className='topContainer'>

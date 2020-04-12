@@ -12,13 +12,13 @@ const divideSymbol = '\u00F7';
 function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
     const [R1Scale, setR1Scale] = useState(1); // amount to scale row by
     const [R1, setR1] = useState(''); // row used in operation
-    const [operation, setOperation] = useState(multiplySymbol) // multiply or divide
+    const [operation, setOperation] = useState(multiplySymbol); // multiply or divide
 
     // switch between division and multiplication
     const switchOperation = () => {
         const op = operation === multiplySymbol ? divideSymbol : multiplySymbol;
         setOperation(op);
-    }
+    };
 
     // test scalar values, which may be fractional or negative
     const inputDecimalTest = (val) => {
@@ -32,12 +32,12 @@ function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
         // then optional digits 
         const RE = /^-{0,1}\d*\.{0,1}\d*$/;
         return !RE.test(val) || val.length > maxLength || zeroFlag;
-    }
+    };
 
     // call perform row scale function from row operations module
     const callPerformRowScale = () => {
         performRowScale(R1, R1Scale, operation, getMatrix, setMatrix, dimRows);
-    }
+    };
 
     return (
         <div className="fContainer">

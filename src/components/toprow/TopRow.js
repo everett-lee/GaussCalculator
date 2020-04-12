@@ -21,7 +21,7 @@ function TopRow({ cols }) {
             }
             )
         );
-    }
+    };
 
     return (
         <div className='topRow'>{makeColHeaders()}</div>

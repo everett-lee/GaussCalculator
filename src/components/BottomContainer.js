@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import FunctionContainer from './functioncontainer/FunctionContainer';
 import Button from './controls/Button';
 import convertMatrix from './rowelimination/RREFAlgorithm';
@@ -12,7 +12,7 @@ function BottomContainer({ rows, getMatrix, setMatrix, undoLast, dimRows }) {
     convertMatrix(getMatrix(), dimRows, setMatrix).then(res => {
       setMatrix(res.flatMap(el => el));
     });
-  }
+  };
 
   return (
     <div className='bottomContainer'>

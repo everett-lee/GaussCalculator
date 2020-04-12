@@ -81,7 +81,7 @@ function removeNegativeZero(matrix) {
 
     matrix.forEach(row => out
         .push(row
-            .map(el => el === -0 ? 0 : el)))
+            .map(el => Object.is(el,-0) ? 0 : el)))
 
     return out;
 }

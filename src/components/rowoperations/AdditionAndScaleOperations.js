@@ -14,7 +14,7 @@ const convertToNumeric = (array) => {
     }
     )));
     return out;
-}
+};
 
 // read a scalar value into a variable or 
 // return false if not a number
@@ -27,12 +27,12 @@ const parseScalar = (scalar) => {
         return false;
     }
     return parsedScalar;
-}
+};
 
 // test row id which must be >= 1 and <= m
 const rowRangeTest = (row, m) => {
     return (isNaN(row) || row < 1 || row > m);
-}
+};
 
 // adds a scaled R1 to R2 and updates matrix state
 const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => {
@@ -40,7 +40,7 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
 
     // invalid rows selected
     if (rowRangeTest(R1, m) || rowRangeTest(R2, m)) {
-        console.error('Both rows must be selected')
+        console.error('Both rows must be selected');
         return;
     }
 
@@ -59,7 +59,7 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
     matrix = convertToNumeric(matrix);
 
     // scale R1 by the required amount
-    const scaledR1 = matrix[R1index].map(el => el *= parsedScalar)
+    const scaledR1 = matrix[R1index].map(el => el *= parsedScalar);
     // add scaled R1 to R2
     for (let i = 0; i < matrix[R2index].length; i++) {
         matrix[R2index][i] += scaledR1[i];
@@ -69,8 +69,7 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
     const flatMatrix = matrix.flatMap(el => el);
     dimRows([R2index]);
     setMatrix(flatMatrix);
-}
-
+};
 
 // multiplies/divides R by some value
 const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) => {
@@ -108,6 +107,6 @@ const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) 
 
     dimRows([R1index]);
     setMatrix(flatMatrix);
-}
+};
 
 export { performRowAddition, performRowScale };

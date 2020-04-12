@@ -7,7 +7,7 @@ import doSwap from '../rowoperations/SwapOperation';
  * Renders the matrix and side buttons
  */
 function MatrixContainer({ dimensions, swapPair, setSwapPair, matrix, setMatrix,
-    arrayToMatrix, dimmedCells, dimRows }) {;
+    arrayToMatrix, dimmedCells, dimRows }) {
     const cols = dimensions.n;
 
     // call the swap row operation to swap two selected
@@ -21,7 +21,7 @@ function MatrixContainer({ dimensions, swapPair, setSwapPair, matrix, setMatrix,
         // there should be as many buttons as rows
         const arr = new Array(dimensions.m).fill(0);
 
-        return arr.map((el, index) => {;
+        return arr.map((el, index) => {
 
             let clicked = false;
             // if this button has been clicked

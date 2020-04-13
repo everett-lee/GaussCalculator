@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/GaussCalculator/precache-manifest.ce61c734b62f1e431d5a4d0443457d54.js"
+  "/GaussCalculator/precache-manifest.2401e9eb300516e89120e03a590f7e0c.js"
 );
 
 self.addEventListener('message', (event) => {

@@ -18,11 +18,11 @@ function App() {
     const max = 10;
 
     const size = startDimensions.m * startDimensions.n;
-    const arr = new Array(size).fill(0);
+    const arr = new Array(size).fill('0');
 
     // map each 0 element to a random member in range min to max
     return arr.map(el => {
-      return Math.floor(Math.random() * (max - min + 1) + min);
+      return String(Math.floor(Math.random() * (max - min + 1) + min));
     });
   };
 
@@ -45,7 +45,7 @@ function App() {
     const size = m * n;
     setDimensions({ m, n });
 
-    const matrix = new Array(size).fill(0);
+    const matrix = new Array(size).fill('0');
     historyContext.resetHistory({ matrix: zeroMatrix, dimensions: startDimensions });
     updateMatrixState(matrix);
   };
@@ -76,12 +76,8 @@ function App() {
 
   // update matrix state and add old matrix to memory
   const updateMatrixState = (newMatrix) => {
-    const mapToNumberOrZero = (num) => Number.isNaN(num)? 0: Number(num);
-
-    const roundToFour = (num) => Math.round((mapToNumberOrZero(num) + Number.EPSILON) * 10000)/10000;
-
     historyContext.addState({ matrix, dimensions });
-    setMatrix(newMatrix.map(num => roundToFour(num)));
+    setMatrix(newMatrix)
   };
 
   // converts the matrix, which is currently in 1D array form, to

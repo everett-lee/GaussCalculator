@@ -8,9 +8,10 @@ function BottomContainer({ rows, getMatrix, setMatrix, undoLast, dimRows }) {
 
   // convert the matrix to reduced row echelon form
   const callConvertMatrix = async () => {
-    // get the converted matrix, which must be flattened
+    // get the converted matrix, which must be flattened and converted 
+    // back to Strings
     convertMatrix(getMatrix(), dimRows, setMatrix).then(res => {
-      setMatrix(res.flatMap(el => el));
+      setMatrix(res.map(val => String(val)));
     });
   };
 

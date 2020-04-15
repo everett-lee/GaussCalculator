@@ -1,4 +1,4 @@
-import copyMatrix from '../utils/CopyMatrix';
+import  { copyMatrix, convertToString, minus, divide, multiply } from '../utils/ArithmeticUtils';
 import sleep from '../utils/Sleep';
 
 /**
@@ -8,56 +8,56 @@ import sleep from '../utils/Sleep';
 
 const nullFunction = () => { return }
 async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
-    matrix = copyMatrix(matrix); // create copy
+    let numericMatrix = copyMatrix(matrix); // create copy with numeric values
 
     let lead = 0; // pivot entry
 
-    const rowCount = matrix.length;
-    const colCount = matrix[0].length;
+    const rowCount = numericMatrix.length;
+    const colCount = numericMatrix[0].length;
 
     for (let r = 0; r < rowCount; r++) {
         // lead exceeds bounds of nested array
         if (lead >= colCount) {
-            return matrix;
+            return numericMatrix;
         }
         let i = r;
 
         // when leading cell in this row is a zero
-        if (matrix[i][lead] === 0) {
-            let res = dealWithZeroLead(matrix, i, r, lead, rowCount, colCount);
+        if (numericMatrix[i][lead] === 0) {
+            let res = dealWithZeroLead(numericMatrix, i, r, lead, rowCount, colCount);
             // exceeded bounds of matrix
             if (res[0] === -1) {
-                return matrix;
+                return numericMatrix;
             } else {
                 [i, lead] = [...res];
             }
         }
-        matrix = swapRows(i, r, matrix);
+        numericMatrix = swapRows(i, r, numericMatrix);
 
         await dimAnimation(dimRows, [i, r], 500);
-        setMatrix(matrix.flatMap(el => el));
+        setMatrix(numericMatrix.flatMap(row => row.map(el => convertToString(el))));
 
-        let leadingVal = matrix[r][lead];
+        let leadingVal = numericMatrix[r][lead];
 
         if (leadingVal !== 0) {
             // divide row r by this value
-            matrix[r] = matrix[r].map(el => el / leadingVal);
+            numericMatrix[r] = numericMatrix[r].map(el => divide(el, leadingVal));
 
             await dimAnimation(dimRows, [r], 500);
-            setMatrix(matrix.flatMap(el => el));
+            setMatrix(numericMatrix.flatMap(row => row.map(el => convertToString(el))));
         }
 
         for (let i = 0; i < rowCount; i++) {
-            leadingVal = matrix[i][lead];
+            leadingVal = numericMatrix[i][lead];
             if (i !== r) {
-                let scaledR = matrix[r].map(el => el * leadingVal);
+                let scaledR = numericMatrix[r].map(el => multiply(el, leadingVal));
 
-                let rowI = matrix[i];
+                let rowI = numericMatrix[i];
                 // subtract the scaled row r from row i 
                 for (let j = 0; j < colCount; j++) {
-                    rowI[j] -= scaledR[j];
+                    rowI[j] = minus(rowI[j], scaledR[j]); // bigint minus
 
-                    setMatrix(matrix.flatMap(el => el));
+                    setMatrix(numericMatrix.flatMap(row => row.map(el => convertToString(el))));
                 }
 
 
@@ -66,7 +66,8 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
         }
         lead++;
     }
-    return removeNegativeZero(matrix);
+    numericMatrix = removeNegativeZero(numericMatrix);
+    return numericMatrix.flatMap(row => row.map(el => convertToString(el)));
 }
 
 // performs dimming animations
@@ -75,13 +76,12 @@ async function dimAnimation(dimRows, rows, time) {
     await sleep(time);
 }
 
-
 function removeNegativeZero(matrix) {
     let out = []
 
     matrix.forEach(row => out
         .push(row
-            .map(el => Object.is(el,-0) ? 0 : el)))
+            .map(el => Object.is(el, -0) ? 0 : el)))
 
     return out;
 }

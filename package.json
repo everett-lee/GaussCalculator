@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://everett-lee.github.io/GaussCalculator",
   "dependencies": {
+    "bignumber.js": "^9.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",

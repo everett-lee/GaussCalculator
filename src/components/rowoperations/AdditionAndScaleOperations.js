@@ -1,20 +1,8 @@
+import  { copyMatrix, convertToString, plus, divide, multiply } from '../utils/ArithmeticUtils';
 /**
  * Contains logic for the row addition and row scale operations
  */
 
-// covert all cell values to numbers
-const convertToNumeric = (array) => {
-    const out = [];
-
-    // convert to base 10 decimal
-    array.forEach(row => out.push(row.map(el => {
-        // convert single dots and dashes (allowed by regex) to 0
-        el === '.' || el === '-' ? el = 0 : el = el;
-        return parseFloat(el, 10);
-    }
-    )));
-    return out;
-};
 
 // read a scalar value into a variable or 
 // return false if not a number
@@ -50,23 +38,25 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
     // attempt to parse the scalar value 
     let parsedScalar = parseScalar(R1Scalar);
     if (!parsedScalar) {
-        // return if an invlid scalar was provided
+        // return if an invalid scalar was provided
         return;
     }
 
-    // get copy of matrix from the app class
-    let matrix = getMatrix();
-    matrix = convertToNumeric(matrix);
+    // get copy of the matrix and cast it to Bignumber
+    const numericMatrix = copyMatrix(getMatrix());
 
     // scale R1 by the required amount
-    const scaledR1 = matrix[R1index].map(el => el *= parsedScalar);
+    const scaledR1 = numericMatrix[R1index].map(el => multiply(el, parsedScalar));
     // add scaled R1 to R2
-    for (let i = 0; i < matrix[R2index].length; i++) {
-        matrix[R2index][i] += scaledR1[i];
+    for (let i = 0; i < numericMatrix[R2index].length; i++) {
+        const currentVal = numericMatrix[R2index][i];
+        numericMatrix[R2index][i] = plus(currentVal, scaledR1[i]);
     }
 
     // flatten result and update parent class 
-    const flatMatrix = matrix.flatMap(el => el);
+    const flatMatrix = numericMatrix.flatMap(row => row
+        .map( el => convertToString(el)));
+
     dimRows([R2index]);
     setMatrix(flatMatrix);
 };
@@ -83,27 +73,27 @@ const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) 
     // attempt to parse the scalar value 
     let parsedScalar = parseScalar(R1Scale);
     if (!parsedScalar) {
-        // return if an invlid scalar was provided
+        // return if an invalid scalar was provided
         return;
     }
 
-    // get copy of matrix from the app class
-    let matrix = getMatrix();
-    matrix = convertToNumeric(matrix);
+    // get copy of the matrix and cast it to Bignumber
+    const numericMatrix = copyMatrix(getMatrix());
 
     // scale R1 by the required amount
-    const scaledR1 = matrix[R1index].map(el => {
+    const scaledR1 = numericMatrix[R1index].map(el => {
         if (operation === multiplySymbol) {
-            return el *= parsedScalar;
+            return multiply(el, parsedScalar);
         } else {
-            return el /= parsedScalar;
+            return divide(el, parsedScalar);
         }
     });
 
-    matrix[R1index] = scaledR1;
+    numericMatrix[R1index] = scaledR1;
 
     // flatten result and update parent class 
-    const flatMatrix = matrix.flatMap(el => el);
+    const flatMatrix = numericMatrix.flatMap(row => row
+        .map( el => convertToString(el)));
 
     dimRows([R1index]);
     setMatrix(flatMatrix);

@@ -1,4 +1,4 @@
-import  { copyMatrix, convertToString, minus, divide, multiply } from '../utils/ArithmeticUtils';
+import  { copyMatrix, equals, minus, divide, multiply } from '../utils/ArithmeticUtils';
 import sleep from '../utils/Sleep';
 
 /**
@@ -23,7 +23,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
         let i = r;
 
         // when leading cell in this row is a zero
-        if (numericMatrix[i][lead] === 0) {
+        if (equals(numericMatrix[i][lead], 0)) {
             let res = dealWithZeroLead(numericMatrix, i, r, lead, rowCount, colCount);
             // exceeded bounds of matrix
             if (res[0] === -1) {
@@ -35,16 +35,16 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
         numericMatrix = swapRows(i, r, numericMatrix);
 
         await dimAnimation(dimRows, [i, r], 500);
-        setMatrix(numericMatrix.flatMap(row => row.map(el => convertToString(el))));
+        setMatrix(numericMatrix.flatMap(el => el));
 
         let leadingVal = numericMatrix[r][lead];
 
-        if (leadingVal !== 0) {
+        if (!equals(leadingVal, 0)) {
             // divide row r by this value
             numericMatrix[r] = numericMatrix[r].map(el => divide(el, leadingVal));
 
             await dimAnimation(dimRows, [r], 500);
-            setMatrix(numericMatrix.flatMap(row => row.map(el => convertToString(el))));
+            setMatrix(numericMatrix.flatMap(el => el));
         }
 
         for (let i = 0; i < rowCount; i++) {
@@ -57,7 +57,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
                 for (let j = 0; j < colCount; j++) {
                     rowI[j] = minus(rowI[j], scaledR[j]); // bigint minus
 
-                    setMatrix(numericMatrix.flatMap(row => row.map(el => convertToString(el))));
+                    setMatrix(numericMatrix.flatMap(el => el));
                 }
 
 
@@ -66,24 +66,13 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
         }
         lead++;
     }
-    numericMatrix = removeNegativeZero(numericMatrix);
-    return numericMatrix.flatMap(row => row.map(el => convertToString(el)));
+    return numericMatrix.flatMap(el => el);
 }
 
 // performs dimming animations
 async function dimAnimation(dimRows, rows, time) {
     dimRows(rows);
     await sleep(time);
-}
-
-function removeNegativeZero(matrix) {
-    let out = []
-
-    matrix.forEach(row => out
-        .push(row
-            .map(el => Object.is(el, -0) ? 0 : el)))
-
-    return out;
 }
 
 function dealWithZeroLead(matrix, i, r, lead, rowCount, colCount) {

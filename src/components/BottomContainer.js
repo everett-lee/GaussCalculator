@@ -11,7 +11,7 @@ function BottomContainer({ rows, getMatrix, setMatrix, undoLast, dimRows }) {
     // get the converted matrix, which must be flattened and converted 
     // back to Strings
     convertMatrix(getMatrix(), dimRows, setMatrix).then(res => {
-      setMatrix(res.map(val => String(val)));
+      setMatrix(res);
     });
   };
 

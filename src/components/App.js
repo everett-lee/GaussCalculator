@@ -5,6 +5,7 @@ import { HistoryContext } from './providers/HistoryProvider';
 import MatrixContainer from './matrixcontainer/MatrixContainer';
 import TopRow from './toprow/TopRow';
 import sleep from './utils/Sleep';
+import BigNumber from 'bignumber.js';
 
 import './style.css';
 
@@ -18,11 +19,12 @@ function App() {
     const max = 10;
 
     const size = startDimensions.m * startDimensions.n;
-    const arr = new Array(size).fill('0');
+    const arr = new Array(size).fill(new BigNumber(0, 10));
 
     // map each 0 element to a random member in range min to max
     return arr.map(el => {
-      return String(Math.floor(Math.random() * (max - min + 1) + min));
+      const randomVal = Math.floor(Math.random() * (max - min + 1) + min);
+      return new BigNumber(randomVal, 10)
     });
   };
 
@@ -45,7 +47,7 @@ function App() {
     const size = m * n;
     setDimensions({ m, n });
 
-    const matrix = new Array(size).fill('0');
+    const matrix = new Array(size).fill(new BigNumber(0, 10));
     historyContext.resetHistory({ matrix: zeroMatrix, dimensions: startDimensions });
     updateMatrixState(matrix);
   };

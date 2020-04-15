@@ -1,4 +1,4 @@
-import  { copyMatrix, convertToString, plus, divide, multiply } from '../utils/ArithmeticUtils';
+import  { copyMatrix, plus, divide, multiply } from '../utils/ArithmeticUtils';
 /**
  * Contains logic for the row addition and row scale operations
  */
@@ -54,8 +54,7 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
     }
 
     // flatten result and update parent class 
-    const flatMatrix = numericMatrix.flatMap(row => row
-        .map( el => convertToString(el)));
+    const flatMatrix = numericMatrix.flatMap(el => el);
 
     dimRows([R2index]);
     setMatrix(flatMatrix);
@@ -92,8 +91,7 @@ const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) 
     numericMatrix[R1index] = scaledR1;
 
     // flatten result and update parent class 
-    const flatMatrix = numericMatrix.flatMap(row => row
-        .map( el => convertToString(el)));
+    const flatMatrix = numericMatrix.flatMap(el => el);
 
     dimRows([R1index]);
     setMatrix(flatMatrix);

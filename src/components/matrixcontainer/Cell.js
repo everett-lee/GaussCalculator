@@ -1,4 +1,5 @@
 import React from 'react';
+import  { convertToString } from '../utils/ArithmeticUtils';
 
 /**
  * A cell in the matrix. Is used to input and display values
@@ -28,7 +29,6 @@ function Cell({ cols, index, opacity, matrix, setMatrix }) {
     }
 
     const updateVal = (val) => {
-
         if (val.length > maxValLength) {
             return;
         }
@@ -53,7 +53,7 @@ function Cell({ cols, index, opacity, matrix, setMatrix }) {
     return (
         <div className='cell' >
             <input type='text' className='numInput'
-                value={matrix[index]}
+                value={convertToString(matrix[index])}
                 style={style}
                 onChange={(e) => updateVal(e.target.value)}
                 data-testid={index} />

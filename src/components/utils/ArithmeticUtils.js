@@ -1,7 +1,5 @@
 import BigNumber from 'bignumber.js';
 
-BigNumber.config({ DECIMAL_PLACES: 3 })
-
 // copy a matrix and its items
 function copyMatrix(matrix) {
     return matrix.map(row => {
@@ -11,11 +9,23 @@ function copyMatrix(matrix) {
 
 function castIfNumeric(val) {
     // allowed by RegEx
-    if (val === '-' || val === '.') {
+    if (val === '-' || val === '.' || !!val) {
         return new BigNumber(0, 10);
     }
 
     return new BigNumber(val, 10);
+}
+
+function equals(a, b) {
+    if (!(a instanceof BigNumber)) {
+        a = new BigNumber(a, 10);
+    }
+
+    if (!(b instanceof BigNumber)) {
+        b = new BigNumber(b, 10);
+    }
+    
+    return a.isEqualTo(b);
 }
 
 function plus(a, b) {
@@ -27,7 +37,8 @@ function plus(a, b) {
         b = new BigNumber(b, 10);
     }
 
-    return a.plus(b);
+    const res = a.plus(b);
+    return zeroIfBelowMin(res);
 }
 
 function minus(a, b) {
@@ -39,7 +50,8 @@ function minus(a, b) {
         b = new BigNumber(b, 10);
     }
 
-    return a.minus(b);
+    const res = a.minus(b);
+    return zeroIfBelowMin(res);
 }
 
 function multiply(a, b) {
@@ -51,7 +63,8 @@ function multiply(a, b) {
         b = new BigNumber(b, 10);
     }
 
-    return a.multipliedBy(b);
+    const res = a.multipliedBy(b);
+    return zeroIfBelowMin(res);
 }
 
 function divide(a, b) {
@@ -63,17 +76,33 @@ function divide(a, b) {
         b = new BigNumber(b, 10);
     }
 
-    return a.dividedBy(b);
+    const res = a.dividedBy(b);
+    return zeroIfBelowMin(res);
 }
 
+function zeroIfBelowMin(num) {
+    const absoluteValueNum = num.abs();
+    if (absoluteValueNum.isLessThan(new BigNumber(0.00002, 10))) {
+        return new BigNumber(0);
+    }
+    return num;
+}
 
 function convertToString(a) {
     if (!(a instanceof BigNumber)) {
         a = new BigNumber(a, 10);
     }
 
-    return a.toString(10);
+    if (a.isInteger()) {
+        return a.toString();
+    }
+
+    const fraction = a.toFraction(100000);
+    const numerator = fraction[0].toString();
+    const denominator = fraction[1].toString();
+
+    return `${numerator} / ${denominator}`;
 }
 
 
-export { copyMatrix, convertToString, plus, minus, divide, multiply };
+export { copyMatrix, convertToString, equals, plus, minus, divide, multiply };

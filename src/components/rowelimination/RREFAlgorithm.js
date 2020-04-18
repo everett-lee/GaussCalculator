@@ -1,14 +1,17 @@
-import  { copyMatrix, equals, minus, divide, multiply } from '../utils/ArithmeticUtils';
+import { copyMatrix, toFractionalString, equals, minus, divide, multiply } from '../utils/ArithmeticUtils';
 import sleep from '../utils/Sleep';
+import BigNumber from 'bignumber.js';
 
 /**
  * Algorithm to convert input matrix to reduced row echelon form. Based on
  * pseudocode from https://rosettacode.org/wiki/Reduced_row_echelon_form
  */
+const zero = new BigNumber(0, 10);
 
 const nullFunction = () => { return }
 async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
-    let numericMatrix = copyMatrix(matrix); // create copy with numeric values
+    // Get a copy of the matrix in BigNumber form
+    let numericMatrix = copyMatrix(matrix);
 
     let lead = 0; // pivot entry
 
@@ -18,12 +21,12 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
     for (let r = 0; r < rowCount; r++) {
         // lead exceeds bounds of nested array
         if (lead >= colCount) {
-            return numericMatrix;
+            return numericMatrix.flatMap(row => row.map(el => toFractionalString(el)));
         }
         let i = r;
 
         // when leading cell in this row is a zero
-        if (equals(numericMatrix[i][lead], 0)) {
+        if (equals(numericMatrix[i][lead], zero)) {
             let res = dealWithZeroLead(numericMatrix, i, r, lead, rowCount, colCount);
             // exceeded bounds of matrix
             if (res[0] === -1) {
@@ -35,16 +38,16 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
         numericMatrix = swapRows(i, r, numericMatrix);
 
         await dimAnimation(dimRows, [i, r], 500);
-        setMatrix(numericMatrix.flatMap(el => el));
+        setMatrix(numericMatrix.flatMap(row => row.map(el => toFractionalString(el))));
 
         let leadingVal = numericMatrix[r][lead];
 
-        if (!equals(leadingVal, 0)) {
+        if (!equals(leadingVal, zero)) {
             // divide row r by this value
             numericMatrix[r] = numericMatrix[r].map(el => divide(el, leadingVal));
 
             await dimAnimation(dimRows, [r], 500);
-            setMatrix(numericMatrix.flatMap(el => el));
+            setMatrix(numericMatrix.flatMap(row => row.map(el => toFractionalString(el))));
         }
 
         for (let i = 0; i < rowCount; i++) {
@@ -55,9 +58,9 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
                 let rowI = numericMatrix[i];
                 // subtract the scaled row r from row i 
                 for (let j = 0; j < colCount; j++) {
-                    rowI[j] = minus(rowI[j], scaledR[j]); // bigint minus
+                    rowI[j] = minus(rowI[j], scaledR[j]);
 
-                    setMatrix(numericMatrix.flatMap(el => el));
+                    setMatrix(numericMatrix.flatMap(row => row.map(el => toFractionalString(el))));
                 }
 
 
@@ -66,7 +69,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
         }
         lead++;
     }
-    return numericMatrix.flatMap(el => el);
+    return numericMatrix.flatMap(row => row.map(el => toFractionalString(el)));
 }
 
 // performs dimming animations

@@ -1,5 +1,8 @@
 import React from 'react';
-import  { convertToString } from '../utils/ArithmeticUtils';
+
+// 0 or 1 dash followed by optional digits and 0 or 1 slash
+// then optional digits 
+const RE = /^-{0,1}\d*\/{0,1}\d*$/;
 
 /**
  * A cell in the matrix. Is used to input and display values
@@ -24,28 +27,27 @@ function Cell({ cols, index, opacity, matrix, setMatrix }) {
     //update the matrix state
     const updateState = (val) => {
         let matrixCopy = matrix.slice(0);
+
         matrixCopy[index] = val;
         setMatrix(matrixCopy);
     }
 
     const updateVal = (val) => {
+
         if (val.length > maxValLength) {
             return;
         }
 
-        // Return if max fractional part added
-        const decimalPlace = val.indexOf('.');
-        if (val.slice(decimalPlace).length > 3) {
-            return;
-        }
-
-        // 0 or 1 dash followed by optional digits and 0 or 1 dot
-        // then optional digits 
-        let RE = /^-{0,1}\d*\.{0,1}\d*$/;
         if (!RE.test(val)) {
             // return on invalid input 
             return;
         } else {
+            // check for 0 denominator
+            const splitFraction = val.split('/');
+            if (splitFraction.length > 1 && splitFraction[1] === '0') {
+                return;
+            }
+
             updateState(val);
         }
     }
@@ -53,7 +55,7 @@ function Cell({ cols, index, opacity, matrix, setMatrix }) {
     return (
         <div className='cell' >
             <input type='text' className='numInput'
-                value={convertToString(matrix[index])}
+                value={matrix[index].toString()}
                 style={style}
                 onChange={(e) => updateVal(e.target.value)}
                 data-testid={index} />

@@ -23,10 +23,10 @@ function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
     // test scalar values, which may be fractional or negative
     const inputDecimalTest = (val) => {
         // scalars should not be made up for more than 7 characters
-        const maxLength = 7;
+        const maxLength = 6;
 
         // scaling by 0 is not allowed
-        const zeroFlag = val === '0';
+        const zeroFlag = val === '0' || parseFloat(val) === 0;
 
         // 0 or 1 dash followed by optional digits and 0 or 1 dot
         // then optional digits 

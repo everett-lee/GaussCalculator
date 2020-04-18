@@ -1,4 +1,5 @@
-import  { copyMatrix, plus, divide, multiply } from '../utils/ArithmeticUtils';
+import { copyMatrix, toFractionalString, plus, divide, multiply } from '../utils/ArithmeticUtils';
+import BigNumber from 'bignumber.js';
 /**
  * Contains logic for the row addition and row scale operations
  */
@@ -14,7 +15,7 @@ const parseScalar = (scalar) => {
         console.error('Invalid scalar');
         return false;
     }
-    return parsedScalar;
+    return new BigNumber(parsedScalar, 10);
 };
 
 // test row id which must be >= 1 and <= m
@@ -54,7 +55,7 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
     }
 
     // flatten result and update parent class 
-    const flatMatrix = numericMatrix.flatMap(el => el);
+    const flatMatrix = numericMatrix.flatMap(row => (row.map(el => toFractionalString(el))));
 
     dimRows([R2index]);
     setMatrix(flatMatrix);
@@ -91,7 +92,7 @@ const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) 
     numericMatrix[R1index] = scaledR1;
 
     // flatten result and update parent class 
-    const flatMatrix = numericMatrix.flatMap(el => el);
+    const flatMatrix = numericMatrix.flatMap(row => (row.map(el => toFractionalString(el))));
 
     dimRows([R1index]);
     setMatrix(flatMatrix);

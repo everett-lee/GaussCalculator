@@ -36,13 +36,13 @@ test('The addition of two rows results in the correct output', () => {
     input = queryByTestId('5');
     fireEvent.change(input, { target: { value: '0' } })
     input = queryByTestId('6');
-    fireEvent.change(input, { target: { value: '1.5' } })
+    fireEvent.change(input, { target: { value: '3/2' } })
     input = queryByTestId('7');
     fireEvent.change(input, { target: { value: '1' } })
     input = queryByTestId('8');
     fireEvent.change(input, { target: { value: '-4' } })
     input = queryByTestId('9');
-    fireEvent.change(input, { target: { value: '-2.5' } })
+    fireEvent.change(input, { target: { value: '-5/2' } })
 
     fireEvent.click(queryByTestId(/rowAdditionButton/i));
 
@@ -50,13 +50,13 @@ test('The addition of two rows results in the correct output', () => {
     let element = queryByTestId('5');
     expect(element.value).toBe('2')
     element = queryByTestId('6');
-    expect(element.value).toBe('5.5')
+    expect(element.value).toBe('11/2')
     element = queryByTestId('7');
     expect(element.value).toBe('1')
     element = queryByTestId('8');
     expect(element.value).toBe('-12')
     element = queryByTestId('9');
-    expect(element.value).toBe('7.5')
+    expect(element.value).toBe('15/2')
 })
 
 test('The subtraction of a row results in the correct output', () => {
@@ -90,31 +90,31 @@ test('The subtraction of a row results in the correct output', () => {
     input = queryByTestId('14');
     fireEvent.change(input, { target: { value: '5' } })
 
-    // R5: 0x + 1.5y + 1z + -4w = -2.5
+    // R5: 0x + 3/2y + 1z + -4w = -5/2
     input = queryByTestId('20');
     fireEvent.change(input, { target: { value: '0' } })
     input = queryByTestId('21');
-    fireEvent.change(input, { target: { value: '1.5' } })
+    fireEvent.change(input, { target: { value: '3/2' } })
     input = queryByTestId('22');
     fireEvent.change(input, { target: { value: '1' } })
     input = queryByTestId('23');
     fireEvent.change(input, { target: { value: '-4' } })
     input = queryByTestId('24');
-    fireEvent.change(input, { target: { value: '-2.5' } })
+    fireEvent.change(input, { target: { value: '-5/2' } })
 
     fireEvent.click(queryByTestId(/rowAdditionButton/i));
 
-    // result: -2x - 3.5y + 1z +4w = -12.5  
+    // result: -2x - 3.5y + 1z +4w = -25/2  
     let element = queryByTestId('20');
     expect(element.value).toBe('-2')
     element = queryByTestId('21');
-    expect(element.value).toBe('-2.5')
+    expect(element.value).toBe('-5/2')
     element = queryByTestId('22');
     expect(element.value).toBe('1')
     element = queryByTestId('23');
     expect(element.value).toBe('4')
     element = queryByTestId('24');
-    expect(element.value).toBe('-12.5')
+    expect(element.value).toBe('-25/2')
 })
 
 test('The addition of a row with non numeric values works as expected', () => {

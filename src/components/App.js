@@ -5,13 +5,12 @@ import { HistoryContext } from './providers/HistoryProvider';
 import MatrixContainer from './matrixcontainer/MatrixContainer';
 import TopRow from './toprow/TopRow';
 import sleep from './utils/Sleep';
-import BigNumber from 'bignumber.js';
 
 import './style.css';
 
 function App() {
   const startDimensions = { m: 4, n: 5 };
-  const zeroMatrix = new Array(startDimensions.m * startDimensions.n).fill(0);
+  const zeroMatrix = new Array(startDimensions.m * startDimensions.n).fill('0');
 
   // create an array with random values as start state
   const makeRandomArray = () => {
@@ -19,12 +18,12 @@ function App() {
     const max = 10;
 
     const size = startDimensions.m * startDimensions.n;
-    const arr = new Array(size).fill(new BigNumber(0, 10));
+    const arr = new Array(size).fill('0');
 
     // map each 0 element to a random member in range min to max
     return arr.map(el => {
       const randomVal = Math.floor(Math.random() * (max - min + 1) + min);
-      return new BigNumber(randomVal, 10)
+      return randomVal.toString();
     });
   };
 
@@ -47,7 +46,7 @@ function App() {
     const size = m * n;
     setDimensions({ m, n });
 
-    const matrix = new Array(size).fill(new BigNumber(0, 10));
+    const matrix = new Array(size).fill('0');
     historyContext.resetHistory({ matrix: zeroMatrix, dimensions: startDimensions });
     updateMatrixState(matrix);
   };

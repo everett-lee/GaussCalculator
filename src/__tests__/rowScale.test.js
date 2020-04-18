@@ -35,7 +35,7 @@ test('The multiplication of a row results in the correct output', () => {
 
     // result: 2.5 + 5y + 0z - 10w = 12.5
     let element = queryByTestId('0');
-    expect(element.value).toBe('2.5');
+    expect(element.value).toBe('5/2');
     element = queryByTestId('1');
     expect(element.value).toBe('5');
     element = queryByTestId('2');
@@ -43,7 +43,7 @@ test('The multiplication of a row results in the correct output', () => {
     element = queryByTestId('3');
     expect(element.value).toBe('-10');
     element = queryByTestId('4');
-    expect(element.value).toBe('12.5');
+    expect(element.value).toBe('25/2');
 })
 
 test('The multiplication of a row by negative results in the correct output', () => {
@@ -193,7 +193,7 @@ test('The division of a row results in the correct output', () => {
 
     // result: 0.5 + 1y + 0z - 8w = 2.5
     let element = queryByTestId('0');
-    expect(element.value).toBe('0.5');
+    expect(element.value).toBe('1/2');
     element = queryByTestId('1');
     expect(element.value).toBe('1');
     element = queryByTestId('2');
@@ -201,7 +201,7 @@ test('The division of a row results in the correct output', () => {
     element = queryByTestId('3');
     expect(element.value).toBe('-2');
     element = queryByTestId('4');
-    expect(element.value).toBe('2.5');
+    expect(element.value).toBe('5/2');
 })
 
 test('The division of a row by decimal results in the correct output', () => {

@@ -196,9 +196,9 @@ test('Undo reverses row scale', () => {
 
     fireEvent.click(queryByTestId(/rowScaleButton/i));
 
-    // result: 2.5 + 5y + 0z - 10w = 12.5
+    // result: 5/2 + 5y + 0z - 10w = 25/2
     let element = queryByTestId('0');
-    expect(element.value).toBe('2.5');
+    expect(element.value).toBe('5/2');
     element = queryByTestId('1');
     expect(element.value).toBe('5');
     element = queryByTestId('2');
@@ -206,7 +206,7 @@ test('Undo reverses row scale', () => {
     element = queryByTestId('3');
     expect(element.value).toBe('-10');
     element = queryByTestId('4');
-    expect(element.value).toBe('12.5');
+    expect(element.value).toBe('25/2');
 
     fireEvent.click(queryByTestId(/undoButton/i));
 
@@ -251,39 +251,39 @@ test('Undo reverses row addition', () => {
     input = queryByTestId('5');
     fireEvent.change(input, { target: { value: '0' } });
     input = queryByTestId('6');
-    fireEvent.change(input, { target: { value: '1.5' } });
+    fireEvent.change(input, { target: { value: '3/2' } });
     input = queryByTestId('7');
     fireEvent.change(input, { target: { value: '1' } });
     input = queryByTestId('8');
     fireEvent.change(input, { target: { value: '-4' } });
     input = queryByTestId('9');
-    fireEvent.change(input, { target: { value: '-2.5' } });
+    fireEvent.change(input, { target: { value: '-5/2' } });
 
     fireEvent.click(queryByTestId(/rowAdditionButton/i));
 
-    // result: 2x + 5.5y + 1z -12w = 2.5  
+    // result: 2x + 11/2y + 1z -12w = 5/2
     let element = queryByTestId('5');
     expect(element.value).toBe('2');
     element = queryByTestId('6');
-    expect(element.value).toBe('5.5');
+    expect(element.value).toBe('11/2');
     element = queryByTestId('7');
     expect(element.value).toBe('1');
     element = queryByTestId('8');
     expect(element.value).toBe('-12');
     element = queryByTestId('9');
-    expect(element.value).toBe('7.5');
+    expect(element.value).toBe('15/2');
 
     fireEvent.click(queryByTestId(/undoButton/i));
 
-    // back to: 0x + 1.5y + 1z + -4w = -2.5
+    // back to: 0x + 3/2y + 1z + -4w = -5/2
     element = queryByTestId('5');
     expect(element.value).toBe('0');
     element = queryByTestId('6');
-    expect(element.value).toBe('1.5');
+    expect(element.value).toBe('3/2');
     element = queryByTestId('7');
     expect(element.value).toBe('1');
     element = queryByTestId('8');
     expect(element.value).toBe('-4');
     element = queryByTestId('9');
-    expect(element.value).toBe('-2.5');
+    expect(element.value).toBe('-5/2');
 })

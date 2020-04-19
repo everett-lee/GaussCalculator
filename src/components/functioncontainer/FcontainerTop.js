@@ -15,11 +15,11 @@ function FcontainerTop( { rowRangeTest, getMatrix, setMatrix, dimRows }) {
     // test scalar values, which may be fractional or negative
     const inputDecimalTest = (val) => {
         // scalars should not be made up for more than 7 characters
-        const maxLength = 7;
+        const maxLength = 8;
 
-        // 0 or 1 dash followed by optional digits and 0 or 1 dot
-        // then optional digits 
-        const RE = /^-{0,1}\d*\.{0,1}\d*$/;
+        // 0 or 1 dash followed by optional digits and 0 or 1 slash
+        // then optional digits greater than 0
+        const RE = /^-{0,1}\d*\/{0,1}[1-9]*$/;
         return !RE.test(val) || val.length > maxLength;
     }
 
@@ -34,7 +34,7 @@ function FcontainerTop( { rowRangeTest, getMatrix, setMatrix, dimRows }) {
     }
 
     // call the perform row addition function in the row operations module
-    const callperformRowAddition = () => {
+    const callPerformRowAddition = () => {
         performRowAddition(R1, R2, R1Scalar, getMatrix, setMatrix, dimRows)
     }
 
@@ -53,7 +53,7 @@ function FcontainerTop( { rowRangeTest, getMatrix, setMatrix, dimRows }) {
                 inputTest={inputRowTest} number={true}
                 testId={'R2ValueTop'} placeholder={'Rⱼ'} />
             <Button className='fButton'
-                name={`${R1Scalar} ${bigX} R${R1} + R${R2} → R${R2}`} f={callperformRowAddition}
+                name={`${R1Scalar} ${bigX} R${R1} + R${R2} → R${R2}`} f={callPerformRowAddition}
                 testId={"rowAdditionButton"} />
         </div>
     )

@@ -4,30 +4,31 @@ import BigNumber from 'bignumber.js';
 function copyMatrix(matrix) {
     return matrix.map(row => {
         return row.map(val => toBigNumber(val))
-    })
+    });
 }
 
-function toBigNumber(val) {
+function toBigNumber(val, defaultOutput=0) {
     if (val instanceof BigNumber) {
         return val;
     }
 
+    const stringVal = val.toString();
+
     // Integer value
-    if (val && val.indexOf('/') === -1 && val !== '-') {
-        const out = new BigNumber(val, 10);
-        return new BigNumber(val, 10);
+    if (stringVal && stringVal.indexOf('/') === -1 && stringVal !== '-') {
+        return new BigNumber(stringVal, 10);
     }
 
-    if (!val || val === '-' || val === '/' || isPartiallyComplete(val)) {
-        return new BigNumber(0, 10);
+    if (!stringVal || stringVal === '-' || stringVal === '/' || isPartiallyComplete(stringVal)) {
+        return new BigNumber(defaultOutput, 10);
     }
 
-    const splitFraction = val.split('/');
+    const splitFraction = stringVal.split('/');
     const numerator = new BigNumber(splitFraction[0], 10);
     const denominator = new BigNumber(splitFraction[1], 10);
 
-    const ret = divide(numerator, denominator);
-    return ret;
+    const result = divide(numerator, denominator);
+    return zeroIfBelowMin(result);
 }
 
 // A fraction with only one side assigned
@@ -61,10 +62,14 @@ function divide(a, b) {
     return zeroIfBelowMin(res);
 }
 
+function greaterThan(a, b) {
+    return a.isGreaterThan(b);
+}
+
 function zeroIfBelowMin(num) {
     const absoluteValueNum = num.abs();
     if (absoluteValueNum.isLessThan(new BigNumber(0.00002, 10))) {
-        return new BigNumber(0);
+        return new BigNumber(0, 10);
     }
     return num;
 }
@@ -82,8 +87,12 @@ function toFractionalString(a) {
     const numerator = fraction[0].toString();
     const denominator = fraction[1].toString();
 
+    if (denominator === '1') {
+        return numerator;
+    }
+
     return `${numerator}/${denominator}`;
 }
 
 
-export { copyMatrix, toFractionalString, equals, plus, minus, divide, multiply };
+export { copyMatrix, toFractionalString, toBigNumber, equals, plus, minus, divide, multiply, greaterThan };

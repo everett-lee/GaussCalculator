@@ -17,7 +17,7 @@ test('The multiplication of a row results in the correct output', () => {
     fireEvent.change(input, { target: { value: '1' } });
 
     let scalarInput = queryByTestId('scalarValueBottom');
-    fireEvent.change(scalarInput, { target: { value: '2.5' } });
+    fireEvent.change(scalarInput, { target: { value: '5/2' } });
 
     // top row: 1x + 2y + 0z + -4w = 5
     input = queryByTestId('0');
@@ -83,49 +83,7 @@ test('The multiplication of a row by negative results in the correct output', ()
     expect(element.value).toBe('-10');
 })
 
-test('The multiplication of a row by zero is not possible', () => {
-    const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
-    console.error = jest.fn()
-
-    let input = queryByTestId('R1ValueBottom');
-    // second row selector
-    fireEvent.change(input, { target: { value: '1' } });
-
-    let scalarInput = queryByTestId('scalarValueBottom');
-    fireEvent.change(scalarInput, { target: { value: '0' } })
-
-    // top row: 1x + 2y + 0z + -4w = 5
-    input = queryByTestId('0');
-    fireEvent.change(input, { target: { value: '1' } });
-    input = queryByTestId('1');
-    fireEvent.change(input, { target: { value: '2' } });
-    input = queryByTestId('2');
-    fireEvent.change(input, { target: { value: '0' } });
-    input = queryByTestId('3');
-    fireEvent.change(input, { target: { value: '-4' } });
-    input = queryByTestId('4');
-    fireEvent.change(input, { target: { value: '5' } });
-
-    fireEvent.click(queryByTestId(/rowScaleButton/i));
-
-    // error logged
-    expect(console.error).toHaveBeenCalled();
-
-    // state is unchanged 
-    // result: 1x + 2y + 0z + -4w = 5
-    let element = queryByTestId('0');
-    expect(element.value).toBe('1');
-    element = queryByTestId('1');
-    expect(element.value).toBe('2');
-    element = queryByTestId('2');
-    expect(element.value).toBe('0');
-    element = queryByTestId('3');
-    expect(element.value).toBe('-4');
-    element = queryByTestId('4');
-    expect(element.value).toBe('5');
-})
-
-test('The multiplication of a row by .0 is not possible', () => {
+test('The multiplication of a row by 2/ leaves state unchanged', () => {
     const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
@@ -133,7 +91,7 @@ test('The multiplication of a row by .0 is not possible', () => {
     fireEvent.change(input, { target: { value: '1' } });
 
     let scalarInput = queryByTestId('scalarValueBottom');
-    fireEvent.change(scalarInput, { target: { value: '.0' } });
+    fireEvent.change(scalarInput, { target: { value: '2/' } });
 
     // top row: 1x + 2y + 0z + -4w = 5
     input = queryByTestId('0');
@@ -204,7 +162,7 @@ test('The division of a row results in the correct output', () => {
     expect(element.value).toBe('5/2');
 })
 
-test('The division of a row by decimal results in the correct output', () => {
+test('The division of a row by fraction results in the correct output', () => {
     const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
@@ -212,7 +170,7 @@ test('The division of a row by decimal results in the correct output', () => {
     fireEvent.change(input, { target: { value: '1' } });
 
     let scalarInput = queryByTestId('scalarValueBottom');
-    fireEvent.change(scalarInput, { target: { value: '0.5' } });
+    fireEvent.change(scalarInput, { target: { value: '1/2' } });
 
     let switchOpButton = queryByTestId(/setOperationButton/);
     fireEvent.click(switchOpButton);
@@ -285,7 +243,7 @@ test('The division of a row by decimal by zero leaves state unchanged', () => {
     expect(element.value).toBe('5');
 })
 
-test('The division of a row by decimal by .0 leaves state unchanged', () => {
+test('The division of a row by 2/ leaves state unchanged', () => {
     const { queryByTestId } = render(<HistoryProvider><App /></HistoryProvider>,);
 
     let input = queryByTestId('R1ValueBottom');
@@ -293,7 +251,7 @@ test('The division of a row by decimal by .0 leaves state unchanged', () => {
     fireEvent.change(input, { target: { value: '1' } });
 
     let scalarInput = queryByTestId('scalarValueBottom');
-    fireEvent.change(scalarInput, { target: { value: '.0' } });
+    fireEvent.change(scalarInput, { target: { value: '2/' } });
 
     let switchOpButton = queryByTestId(/setOperationButton/);
     fireEvent.click(switchOpButton);

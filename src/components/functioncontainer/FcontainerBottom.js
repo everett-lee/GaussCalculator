@@ -22,15 +22,15 @@ function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
 
     // test scalar values, which may be fractional or negative
     const inputDecimalTest = (val) => {
-        // scalars should not be made up for more than 7 characters
-        const maxLength = 6;
+        // scalars should not be made up for more than 8 characters
+        const maxLength = 8;
 
         // scaling by 0 is not allowed
         const zeroFlag = val === '0' || parseFloat(val) === 0;
 
-        // 0 or 1 dash followed by optional digits and 0 or 1 dot
-        // then optional digits 
-        const RE = /^-{0,1}\d*\.{0,1}\d*$/;
+        // 0 or 1 dash followed by at least one digit and 0 or 1 slash
+        // then optional digits
+        const RE = /^-{0,1}\d*\/{0,1}[1-9]*$/;
         return !RE.test(val) || val.length > maxLength || zeroFlag;
     };
 

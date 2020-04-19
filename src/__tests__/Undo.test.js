@@ -127,7 +127,7 @@ test('Undo clears cell values', () => {
     fireEvent.change(input, { target: { value: '1' } });
 
     let scalarInput = queryByTestId('scalarValueBottom');
-    fireEvent.change(scalarInput, { target: { value: '2.5' } });
+    fireEvent.change(scalarInput, { target: { value: '5/2' } });
 
     input = queryByTestId('0');
     fireEvent.change(input, { target: { value: '1' } });
@@ -180,7 +180,7 @@ test('Undo reverses row scale', () => {
     fireEvent.change(input, { target: { value: '1' } });
 
     let scalarInput = queryByTestId('scalarValueBottom');
-    fireEvent.change(scalarInput, { target: { value: '2.5' } });
+    fireEvent.change(scalarInput, { target: { value: '5/2' } });
 
     // top row: 1x + 2y + 0z + -4w = 5
     input = queryByTestId('0');

@@ -21,7 +21,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
     for (let r = 0; r < rowCount; r++) {
         // lead exceeds bounds of nested array
         if (lead >= colCount) {
-            return numericMatrix.flatMap(row => row.map(el => toFractionalString(el)));
+            return mapNumericMatrixToStringForm(numericMatrix);
         }
         let i = r;
 
@@ -38,7 +38,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
         numericMatrix = swapRows(i, r, numericMatrix);
 
         await dimAnimation(dimRows, [i, r], 500);
-        setMatrix(numericMatrix.flatMap(row => row.map(el => toFractionalString(el))));
+        setMatrix(mapNumericMatrixToStringForm(numericMatrix));
 
         let leadingVal = numericMatrix[r][lead];
 
@@ -47,7 +47,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
             numericMatrix[r] = numericMatrix[r].map(el => divide(el, leadingVal));
 
             await dimAnimation(dimRows, [r], 500);
-            setMatrix(numericMatrix.flatMap(row => row.map(el => toFractionalString(el))));
+            setMatrix(mapNumericMatrixToStringForm(numericMatrix));
         }
 
         for (let i = 0; i < rowCount; i++) {
@@ -60,7 +60,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
                 for (let j = 0; j < colCount; j++) {
                     rowI[j] = minus(rowI[j], scaledR[j]);
 
-                    setMatrix(numericMatrix.flatMap(row => row.map(el => toFractionalString(el))));
+                    setMatrix(mapNumericMatrixToStringForm(numericMatrix));
                 }
 
 
@@ -69,7 +69,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
         }
         lead++;
     }
-    return numericMatrix.flatMap(row => row.map(el => toFractionalString(el)));
+    return mapNumericMatrixToStringForm(numericMatrix);
 }
 
 // performs dimming animations
@@ -79,7 +79,7 @@ async function dimAnimation(dimRows, rows, time) {
 }
 
 function dealWithZeroLead(matrix, i, r, lead, rowCount, colCount) {
-    while (matrix[i][lead] === 0) {
+    while (equals(matrix[i][lead], zero)) {
         i++;
 
         // i has exceeded bounds of matrix
@@ -106,6 +106,10 @@ function swapRows(i, r, matrix) {
     matrix[r] = temp;
 
     return matrix;
+}
+
+function mapNumericMatrixToStringForm(numericMatrix) {
+    return numericMatrix.flatMap(row => row.map(el => toFractionalString(el)))
 }
 
 export default convertMatrix;

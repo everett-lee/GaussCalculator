@@ -1,21 +1,18 @@
-import { copyMatrix, toFractionalString, plus, divide, multiply } from '../utils/ArithmeticUtils';
+import {
+    copyMatrix, toFractionalString, toBigNumber, equals,
+    plus, divide, multiply, greaterThan
+} from '../utils/ArithmeticUtils';
 import BigNumber from 'bignumber.js';
 /**
  * Contains logic for the row addition and row scale operations
  */
+const zero = new BigNumber(0, 10);
+const maxNum = new BigNumber(1 * Math.pow(10, 15), 10);
+const INVALID = "INVALID";
 
-
-// read a scalar value into a variable or 
-// return false if not a number
-const parseScalar = (scalar) => {
-    // attempt to parse the scalar value 
-    let parsedScalar = parseFloat(scalar);
-    // invalid scalar provided
-    if (isNaN(parsedScalar)) {
-        console.error('Invalid scalar');
-        return false;
-    }
-    return new BigNumber(parsedScalar, 10);
+// parse Scalar value into BigNumber form
+const parseScalar = (scalar, defaultValue) => {
+    return toBigNumber(scalar, defaultValue);
 };
 
 // test row id which must be >= 1 and <= m
@@ -33,28 +30,38 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
         return;
     }
 
-    let R1index = R1 - 1; // rows are zero-indexed
+    let R1index = R1 - 1; // rows are one-indexed
     let R2index = R2 - 1;
 
-    // attempt to parse the scalar value 
-    let parsedScalar = parseScalar(R1Scalar);
+    // attempt to parse the scalar value, with default 
+    // value of 0 otherwise
+    let parsedScalar = parseScalar(R1Scalar, 0);
     if (!parsedScalar) {
         // return if an invalid scalar was provided
         return;
     }
 
-    // get copy of the matrix and cast it to Bignumber
+    // get copy of the matrix and cast it to BigNumber
     const numericMatrix = copyMatrix(getMatrix());
 
     // scale R1 by the required amount
     const scaledR1 = numericMatrix[R1index].map(el => multiply(el, parsedScalar));
     // add scaled R1 to R2
-    for (let i = 0; i < numericMatrix[R2index].length; i++) {
-        const currentVal = numericMatrix[R2index][i];
-        numericMatrix[R2index][i] = plus(currentVal, scaledR1[i]);
+    const addedR2 = numericMatrix[R2index].map((el, i) => {
+        const scaledR1Value = scaledR1[i];
+        const result = plus(el, scaledR1Value);
+        return maxResultCheck(result);
+    });
+
+    if (!addedR2.includes(INVALID)) {
+        numericMatrix[R2index] = addedR2;
+        // return with no change if division resulted in 
+        // value greater than maxNum
+    } else {
+        return;
     }
 
-    // flatten result and update parent class 
+    // flatten result and update parent component 
     const flatMatrix = numericMatrix.flatMap(row => (row.map(el => toFractionalString(el))));
 
     dimRows([R2index]);
@@ -65,37 +72,65 @@ const performRowAddition = (R1, R2, R1Scalar, getMatrix, setMatrix, dimRows) => 
 const performRowScale = (R1, R1Scale, operation, getMatrix, setMatrix, dimRows) => {
     const multiplySymbol = '\u00B7';
 
-    let R1index = R1 - 1; // rows are zero-indexed in the code
+    let R1index = R1 - 1; // rows are one-indexed
     if (R1index < 0) {
         return;
     }
 
-    // attempt to parse the scalar value 
-    let parsedScalar = parseScalar(R1Scale);
+    // attempt to parse the scalar value, with default 
+    // value of 1 otherwise
+    let parsedScalar = parseScalar(R1Scale, 1);
     if (!parsedScalar) {
         // return if an invalid scalar was provided
         return;
     }
 
-    // get copy of the matrix and cast it to Bignumber
+    if (equals(parsedScalar, zero)) {
+        return;
+    }
+
+    // get copy of the matrix and cast it to BigNumber
     const numericMatrix = copyMatrix(getMatrix());
 
     // scale R1 by the required amount
     const scaledR1 = numericMatrix[R1index].map(el => {
         if (operation === multiplySymbol) {
-            return multiply(el, parsedScalar);
+            const result = multiply(el, parsedScalar);
+            return maxResultCheck(zeroResultCheck(el, result));
         } else {
-            return divide(el, parsedScalar);
+            const result = divide(el, parsedScalar);
+            return maxResultCheck(zeroResultCheck(el, result));
         }
     });
 
-    numericMatrix[R1index] = scaledR1;
+    if (!scaledR1.includes(INVALID)) {
+        numericMatrix[R1index] = scaledR1;
+        // return with no change if division resulted in 
+        // a value that is rounded to 0 or greater than 
+        // maxNum
+    } else {
+        return;
+    }
 
-    // flatten result and update parent class 
+    // flatten result and cast to String 
     const flatMatrix = numericMatrix.flatMap(row => (row.map(el => toFractionalString(el))));
 
     dimRows([R1index]);
     setMatrix(flatMatrix);
 };
+
+const zeroResultCheck = (inNum, outNum) => {
+    if (!equals(inNum, zero) && equals(outNum, zero)) {
+        return INVALID;
+    }
+    return outNum;
+}
+
+const maxResultCheck = (inNum) => {
+    if (inNum === INVALID || greaterThan(inNum, maxNum)) {
+        return INVALID;
+    }
+    return inNum;
+}
 
 export { performRowAddition, performRowScale };

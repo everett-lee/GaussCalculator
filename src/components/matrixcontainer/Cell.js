@@ -4,11 +4,14 @@ import { checkFraction } from '../utils/StringToFractionUtil';
 /**
  * A cell in the matrix. Is used to input and display values
  */
+const GREY = '#cecece';
+const WHITE = '#white';
 function Cell({ cols, index, opacity, matrix, setMatrix }) {
 
+    // Cells in the last row are grey
     const getColour = (i) => {
-        // the index of the item mod |columns| is |columns|-1 
-        const cellColour = (i % cols) === cols - 1 ? '#cecece' : 'white';
+        // The index of the item mod |columns| is |columns|-1 
+        const cellColour = (i % cols) === cols - 1 ? GREY : WHITE;
 
         return cellColour;
     }
@@ -20,7 +23,7 @@ function Cell({ cols, index, opacity, matrix, setMatrix }) {
         backgroundColor: getColour(index)
     };
 
-    //update the matrix state
+    // Update the matrix state
     const updateState = (val) => {
         if (!checkFraction(val) && val !== '') {
             return;

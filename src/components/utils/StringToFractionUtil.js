@@ -10,7 +10,7 @@ const maxValLength = 10;
  * @param {String} val 
  * @param {Number} maxLength 
  */
-const checkFraction = (val, maxLength=maxValLength) => {
+const checkFraction = (val, maxLength = maxValLength) => {
     // Empty values are parsed as 0
     if (!val) {
         return val;
@@ -20,11 +20,11 @@ const checkFraction = (val, maxLength=maxValLength) => {
         return false;
     }
 
+    // Returns false on invalid input 
     if (!RE.test(val)) {
-        // return on invalid input 
         return false;
     } else {
-        // check for 0 denominator
+        // Check for 0 denominator
         const splitFraction = val.split('/');
         if (splitFraction.length > 1 && splitFraction[1] === '0') {
             return false;

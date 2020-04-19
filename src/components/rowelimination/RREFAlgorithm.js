@@ -30,7 +30,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
             let res = dealWithZeroLead(numericMatrix, i, r, lead, rowCount, colCount);
             // exceeded bounds of matrix
             if (res[0] === -1) {
-                return numericMatrix;
+                return mapNumericMatrixToStringForm(numericMatrix);;
             } else {
                 [i, lead] = [...res];
             }

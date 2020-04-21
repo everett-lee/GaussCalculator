@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/GaussCalculator/static/css/main.e7d68929.chunk.css",
-    "main.js": "/GaussCalculator/static/js/main.0361f5d2.chunk.js",
-    "main.js.map": "/GaussCalculator/static/js/main.0361f5d2.chunk.js.map",
+    "main.js": "/GaussCalculator/static/js/main.32d5ed04.chunk.js",
+    "main.js.map": "/GaussCalculator/static/js/main.32d5ed04.chunk.js.map",
     "runtime-main.js": "/GaussCalculator/static/js/runtime-main.b4f92fb8.js",
     "runtime-main.js.map": "/GaussCalculator/static/js/runtime-main.b4f92fb8.js.map",
     "static/js/2.048f2b97.chunk.js": "/GaussCalculator/static/js/2.048f2b97.chunk.js",
     "static/js/2.048f2b97.chunk.js.map": "/GaussCalculator/static/js/2.048f2b97.chunk.js.map",
     "index.html": "/GaussCalculator/index.html",
-    "precache-manifest.c86bb7975bf8ab79fa6795435ee2592f.js": "/GaussCalculator/precache-manifest.c86bb7975bf8ab79fa6795435ee2592f.js",
+    "precache-manifest.b009b0a994d91ecd6b194dbfdf9e66ae.js": "/GaussCalculator/precache-manifest.b009b0a994d91ecd6b194dbfdf9e66ae.js",
     "service-worker.js": "/GaussCalculator/service-worker.js",
     "static/css/main.e7d68929.chunk.css.map": "/GaussCalculator/static/css/main.e7d68929.chunk.css.map",
     "static/js/2.048f2b97.chunk.js.LICENSE.txt": "/GaussCalculator/static/js/2.048f2b97.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b4f92fb8.js",
     "static/js/2.048f2b97.chunk.js",
     "static/css/main.e7d68929.chunk.css",
-    "static/js/main.0361f5d2.chunk.js"
+    "static/js/main.32d5ed04.chunk.js"
   ]
 }

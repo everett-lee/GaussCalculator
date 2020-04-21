@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d33f312430b16ad72d92a704162477f7",
+    "revision": "08aea00697c7bb156877f9d6d4dcb57d",
     "url": "/GaussCalculator/index.html"
   },
   {
-    "revision": "b3cdfc6b198f8eba9dc3",
+    "revision": "dcbbeb60280f5a48f6ab",
     "url": "/GaussCalculator/static/css/main.e7d68929.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/GaussCalculator/static/js/2.048f2b97.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "b3cdfc6b198f8eba9dc3",
-    "url": "/GaussCalculator/static/js/main.0361f5d2.chunk.js"
+    "revision": "dcbbeb60280f5a48f6ab",
+    "url": "/GaussCalculator/static/js/main.32d5ed04.chunk.js"
   },
   {
     "revision": "88ca483dd54f0e2a674f",

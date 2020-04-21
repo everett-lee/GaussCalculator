@@ -12,7 +12,7 @@ function App() {
   const startDimensions = { m: 4, n: 5 };
   const zeroMatrix = new Array(startDimensions.m * startDimensions.n).fill('0');
 
-  // create an array with random values as start state
+  // Create an array with random values as start state
   const makeRandomArray = () => {
     const min = -10;
     const max = 10;
@@ -20,23 +20,23 @@ function App() {
     const size = startDimensions.m * startDimensions.n;
     const arr = new Array(size).fill('0');
 
-    // map each 0 element to a random member in range min to max
+    // Map each 0 element to a random member in range min to max
     return arr.map(el => {
       const randomVal = Math.floor(Math.random() * (max - min + 1) + min);
       return randomVal.toString();
     });
   };
 
-  const historyContext = useContext(HistoryContext); // stores history of past states
+  const historyContext = useContext(HistoryContext); // Stores history of past states
 
-  const [dimensions, setDimensions] = useState(startDimensions); // dimension of array (mXn)
+  const [dimensions, setDimensions] = useState(startDimensions); // Dimension of array (mXn)
   const [m, setM] = useState('');
   const [n, setN] = useState('');
-  const [matrix, setMatrix] = useState(makeRandomArray()); // the matrix represented as a 1D array
-  const [swapPair, setSwapPair] = useState([]); // two rows to be swapped
-  const [dimmedCells, setDimmedCells] = useState([]); // cells dimmed during transition animations
+  const [matrix, setMatrix] = useState(makeRandomArray()); // The matrix represented as a 1D array
+  const [swapPair, setSwapPair] = useState([]); // Two rows to be swapped
+  const [dimmedCells, setDimmedCells] = useState([]); // Cells dimmed during transition animations
 
-  // create an array of the required dimensions
+  // Create an array of the required dimensions
   const makeArray = () => {
     resetMatrix();
     if (m === '' || n === '') {
@@ -51,7 +51,7 @@ function App() {
     updateMatrixState(matrix);
   };
 
-  // reset matrix to original dimensions and values
+  // Reset matrix to original dimensions and values
   const resetMatrix = () => {
     setN('');
     setM('');
@@ -61,12 +61,12 @@ function App() {
     historyContext.resetHistory({ matrix: zeroMatrix, dimensions: startDimensions });
   };
 
-  // gets previous state from history
-  // and update current state to reflect it
+  // Gets previous state from history
+  // and updates current state to reflect it
   const undoLast = () => {
     const last = historyContext.undo();
 
-    // history is empty
+    // History is empty
     if (!last) {
       resetMatrix();
     } else {
@@ -75,13 +75,13 @@ function App() {
     }
   };
 
-  // update matrix state and add old matrix to memory
+  // Update matrix state and add old matrix to memory
   const updateMatrixState = (newMatrix) => {
     historyContext.addState({ matrix, dimensions });
     setMatrix(newMatrix)
   };
 
-  // converts the matrix, which is currently in 1D array form, to
+  // Converts the matrix, which is currently in 1D array form, to
   // 2D array
   const arrayToMatrix = () => {
     const out = [];
@@ -93,7 +93,7 @@ function App() {
     return out;
   };
 
-  // triggers transition animation to signify row operation. Takes an array of 
+  // Triggers transition animation to signify row operation. Takes an array of 
   // row indices as its sole argument
   const dimRows = async (rows) => {
     const cols = dimensions.n;

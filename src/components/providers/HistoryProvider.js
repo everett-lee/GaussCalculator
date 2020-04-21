@@ -12,7 +12,7 @@ function HistoryProvider({ children }) {
 
     const [history, setHistory] = useState([startState]);
 
-    // return the last saved state
+    // Return the last saved state
     const undo = () => {
 
         if (history.length === 1) {
@@ -25,14 +25,14 @@ function HistoryProvider({ children }) {
         return lastState;
     }
 
-    // add the current state to the history
+    // Add the current state to the history
     const addState = (matrix) => {
         const savedStates = history.slice(0);
         savedStates.push(matrix);
         setHistory(savedStates);
     }
 
-    // set as empty history array
+    // Set as empty history array
     const resetHistory = (zeroMatrix) => {
         setHistory([zeroMatrix]);
     }

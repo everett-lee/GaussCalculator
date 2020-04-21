@@ -6,7 +6,7 @@ import BigNumber from 'bignumber.js';
  * Algorithm to convert input matrix to reduced row echelon form. Based on
  * pseudocode from https://rosettacode.org/wiki/Reduced_row_echelon_form
  */
-const zero = new BigNumber(0, 10);
+const ZERO = new BigNumber(0, 10);
 
 const nullFunction = () => { return }
 async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
@@ -19,14 +19,14 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
     const colCount = numericMatrix[0].length;
 
     for (let r = 0; r < rowCount; r++) {
-        // lead exceeds bounds of nested array
+        // Lead exceeds bounds of nested array
         if (lead >= colCount) {
             return mapNumericMatrixToStringForm(numericMatrix);
         }
         let i = r;
 
-        // when leading cell in this row is a zero
-        if (equals(numericMatrix[i][lead], zero)) {
+        // When leading cell in this row is a zero
+        if (equals(numericMatrix[i][lead], ZERO)) {
             let res = dealWithZeroLead(numericMatrix, i, r, lead, rowCount, colCount);
             // exceeded bounds of matrix
             if (res[0] === -1) {
@@ -42,8 +42,8 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
 
         let leadingVal = numericMatrix[r][lead];
 
-        if (!equals(leadingVal, zero)) {
-            // divide row r by this value
+        if (!equals(leadingVal, ZERO)) {
+            // Divide row r by this value
             numericMatrix[r] = numericMatrix[r].map(el => divide(el, leadingVal));
 
             await dimAnimation(dimRows, [r], 500);
@@ -56,7 +56,7 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
                 let scaledR = numericMatrix[r].map(el => multiply(el, leadingVal));
 
                 let rowI = numericMatrix[i];
-                // subtract the scaled row r from row i 
+                // Subtract the scaled row r from row i 
                 for (let j = 0; j < colCount; j++) {
                     rowI[j] = minus(rowI[j], scaledR[j]);
 
@@ -72,14 +72,14 @@ async function convertMatrix(matrix, dimRows, setMatrix = nullFunction) {
     return mapNumericMatrixToStringForm(numericMatrix);
 }
 
-// performs dimming animations
+// Performs dimming animation
 async function dimAnimation(dimRows, rows, time) {
     dimRows(rows);
     await sleep(time);
 }
 
 function dealWithZeroLead(matrix, i, r, lead, rowCount, colCount) {
-    while (equals(matrix[i][lead], zero)) {
+    while (equals(matrix[i][lead], ZERO)) {
         i++;
 
         // i has exceeded bounds of matrix
@@ -87,10 +87,10 @@ function dealWithZeroLead(matrix, i, r, lead, rowCount, colCount) {
             i = r;
             lead++;
 
-            // leading col has exceeded bounds of
+            // Leading col has exceeded bounds of
             // nested matrix 
             if (lead === colCount) {
-                // signals termination condition
+                // Signals termination condition
                 return [-1, -1];
             }
         }
@@ -99,7 +99,7 @@ function dealWithZeroLead(matrix, i, r, lead, rowCount, colCount) {
 }
 
 function swapRows(i, r, matrix) {
-    matrix = copyMatrix(matrix); // create copy
+    matrix = copyMatrix(matrix); // Create copy
 
     let temp = matrix[i];
     matrix[i] = matrix[r];

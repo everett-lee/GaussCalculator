@@ -1,6 +1,6 @@
 import BigNumber from 'bignumber.js';
 
-// copy a matrix and its items
+// Copy a matrix and its items
 function copyMatrix(matrix) {
     return matrix.map(row => {
         return row.map(val => toBigNumber(val))

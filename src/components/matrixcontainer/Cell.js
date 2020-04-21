@@ -5,7 +5,7 @@ import { checkFraction } from '../utils/StringToFractionUtil';
  * A cell in the matrix. Is used to input and display values
  */
 const GREY = '#cecece';
-const WHITE = '#white';
+const WHITE = 'white';
 function Cell({ cols, index, opacity, matrix, setMatrix }) {
 
     // Cells in the last row are grey

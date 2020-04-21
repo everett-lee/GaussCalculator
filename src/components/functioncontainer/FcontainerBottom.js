@@ -7,25 +7,25 @@ const multiplySymbol = '\u00B7';
 const divideSymbol = '\u00F7';
 
 /**
- *  renders control for row scale operation
+ *  Renders control for row scale operation
  */
 function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
-    const [R1Scale, setR1Scale] = useState(1); // amount to scale row by
-    const [R1, setR1] = useState(''); // row used in operation
-    const [operation, setOperation] = useState(multiplySymbol); // multiply or divide
+    const [R1Scale, setR1Scale] = useState(1); // Amount to scale row by
+    const [R1, setR1] = useState(''); // Row used in operation
+    const [operation, setOperation] = useState(multiplySymbol); // Multiply or divide
 
-    // switch between division and multiplication
+    // Switch between division and multiplication
     const switchOperation = () => {
         const op = operation === multiplySymbol ? divideSymbol : multiplySymbol;
         setOperation(op);
     };
 
-    // test scalar values, which may be fractional or negative
+    // Test scalar values, which may be fractional or negative
     const inputDecimalTest = (val) => {
-        // scalars should not be made up for more than 8 characters
+        // Scalars should not be made up for more than 8 characters
         const maxLength = 8;
 
-        // scaling by 0 is not allowed
+        // Scaling by 0 is not allowed
         const zeroFlag = val === '0' || parseFloat(val) === 0;
 
         // 0 or 1 dash followed by at least one digit and 0 or 1 slash
@@ -34,7 +34,7 @@ function FcontainerBottom( { getMatrix, setMatrix, rowRangeTest, dimRows} ) {
         return !RE.test(val) || val.length > maxLength || zeroFlag;
     };
 
-    // call perform row scale function from row operations module
+    // Call perform row scale function from row operations module
     const callPerformRowScale = () => {
         performRowScale(R1, R1Scale, operation, getMatrix, setMatrix, dimRows);
     };

@@ -3,12 +3,12 @@ import FcontainerTop from './FcontainerTop';
 import FcontainerBottom from './FcontainerBottom';
 
 /**
- * renders both child components of the bottom
+ * Renders both child components of the bottom
  * container 
  */
 function FunctionContainer({ rows, getMatrix, setMatrix, dimRows }) {
 
-  // test row id which must be >= 1 and <= m
+  // Test row id which must be >= 1 and <= m
   const rowRangeTest = (row) => {
     return (isNaN(row) || row < 1 || row > rows);
   }
